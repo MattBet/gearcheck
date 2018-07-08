@@ -1,0 +1,167 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+        <header>
+            <!-- BANNER IMAGE !-->
+            <div id="banner-wrapper">
+                <!--<img id="pirate-img" src="../img/pirate.png" class="img-fluid w-100" alt=""> -->
+                <div style="margin: auto; padding-top: 15em;">
+                    <div id="banner-title">
+                        <h1 style="text-align: center">CARRY THEM ALL</h1>
+                        <h3>GET YOUR DESIRED LOOT</h3>
+                        <button class="mainBtn">start buying</button>
+                        <button class="mainBtn" >start selling</button>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <nav id="topNav" class="navbar navbar-expand-lg position-absolute w-100" style="top: 0;">
+                <div class="container">
+                    <a href="" class="navbar-brand">GEAR CHECK</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNav" aria-controls="myNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div id="myNav" class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav ml-auto" id="nav-menu-list">
+                            <li class="nav-item"><button type="button" data-toggle="modal" data-target="#loginModal" class="secondaryBtn">Login</button></li>
+                            <li class="nav-item"><button type="button" data-toggle="modal" data-target="#signupModal" class="mainBtn">Sign up</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+    <!-- PRESENTATION ROW -->
+    <section id="ourmethods">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <img src="../img/chest.png"  class="img-fluid pt-5" alt="" style="opacity: 0.25;">
+                    <img src="../img/chest.png" alt="" class="img-fluid position-absolute pt-5" style="width: 400px; height: auto; left: 8em; top: 8em;">
+                </div>
+                <div class="col-lg-6" style="padding-top: 8em;">
+                        <h3>The Easiest, Fastest Way
+                            to Get your Rank!</h3>
+                        <p>Increpuisset aut existimans luctuosam cogitatum increpuisset dispendium animus aut offensis ad luctuosam etiam quicquid angustus quicquid salutis luctuosam eius factum factum luctuosam etiam increpuisset aegrum suae etiam etiam existimans luctuosam.
+                        </p>
+                    <h5><span><img src="../img/ring.png" alt=""></span>
+
+                        Quos eius ex tempestate Chilo.
+                    </h5>
+                    <h5><span><img src="../img/stats.png" alt=""></span>
+
+                        Quos eius ex tempestate Chilo.
+                    </h5>
+                    <h5><span><img src="../img/hand-shake.png" alt=""></span>
+
+                        Quos eius ex tempestate Chilo.
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="howto">
+        <div class="row" style="margin-top: 1%;">
+            <div class="col-lg-12 text-center">
+            <h2 style="text-align: center">How-To</h2>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6" style="margin-top: 7%;">
+                    <div class="howto-step">
+                        <div class="step">
+                            <div class="step-left">
+                                <div class="circle-icon">
+                                    <h4>1</h4>
+                                </div>
+                            </div>
+                            <div class="step-body">
+                                <h4>
+
+                                    Feriens dolorem gestu certamen feriens.
+                                </h4>
+                                <p>
+
+                                    Beneficiis ulla elegerat agente in nec venit domesticis ducens praemiis Barbatio iumentorum sub fatorum posse.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="howto-step">
+                        <div class="step">
+                            <div class="step-left">
+                                <div class="circle-icon">
+                                    <h4>1</h4>
+                                </div>
+                            </div>
+                            <div class="step-body">
+                                <h4>
+
+                                    Feriens dolorem gestu certamen feriens.
+                                </h4>
+                                <p>
+
+                                    Beneficiis ulla elegerat agente in nec venit domesticis ducens praemiis Barbatio iumentorum sub fatorum posse.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="howto-step">
+                        <div class="step">
+                            <div class="step-left">
+                                <div class="circle-icon">
+                                    <h4>1</h4>
+                                </div>
+                            </div>
+                            <div class="step-body">
+                                <h4>
+
+                                    Feriens dolorem gestu certamen feriens.
+                                </h4>
+                                <p>
+
+                                    Beneficiis ulla elegerat agente in nec venit domesticis ducens praemiis Barbatio iumentorum sub fatorum posse.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="../img/questmark.png" class="img-fluid" style="height: 500px; width: auto;margin: auto; display: block; opacity: 0.25" alt="">
+                    <img src="../img/questmark.png" class="img-fluid position-absolute" style="height: 300px; width: auto;margin: auto; display: block; top:12em; left: 14em;" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- MODALS -->
+    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modaelTitle">SIGN UP</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ form_start(formRegister) }}
+                    {{ form_row(formRegister.username) }}
+                    {{ form_row(formRegister.email) }}
+                    {{ form_row(formRegister.plainPassword.first) }}
+                    {{ form_row(formRegister.plainPassword.second) }}
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+                    {{ form_end(formRegister) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

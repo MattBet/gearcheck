@@ -13,7 +13,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
-                                <a class="nav-link button" href="#">HOW DOES IT WORKS</a>
+                                <a class="nav-link button" href="#" data-toggle="modal" data-target="#contactModal">HOW DOES IT WORKS</a>
                             </li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
@@ -119,27 +119,24 @@
         </footer>
     </section>
         <!-- MODALS -->
-    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
+            <div class="modal-content bg-dark">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modaelTitle">SIGN UP</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h5 class="feature-subheader">SIGN UP</h5>
+                    <a style="cursor: pointer;" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <img src="../img/error.png" alt="">
+                    </a>
                 </div>
                 <div class="modal-body">
-                    {{ form_start(formRegister) }}
-                    {{ form_row(formRegister.username) }}
-                    {{ form_row(formRegister.email) }}
-                    {{ form_row(formRegister.plainPassword.first) }}
-                    {{ form_row(formRegister.plainPassword.second) }}
+                    <div class="feature-content pb-3">Feel free to contact us for further information.</div>
+                    <div class="contact-btn--group">
+                        <button class="btn btn--discord"><span class="pr-2"><img src="../img/discord.png" style="height: 24px; width: 24px;" alt=""></span>johndoe#0000</button>
+                        <button class="btn btn--skype"><span class="pr-2"><img src="../img/skype.png" style="height: 24px; width: 24px;" alt=""></span>johndoe#0000</button>
+                    </div>
 
+                    <div class="feature-content pt-3">Or contact us at <strong>mail@mail.com</strong></div>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-                    {{ form_end(formRegister) }}
             </div>
         </div>
     </div>

@@ -1,155 +1,172 @@
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
 body{
-  font-family: 'Passion One', sans-serif;
-}
-#banner-wrapper{
-    /* The image used */
-  /* Set a specific height */
-    min-height: 700px;
-
-    /* Create the parallax scrolling effect */
-  background: linear-gradient(to bottom, rgba(0,0,0, 0), rgba(0,0,0, 100)), url("../img/pirate.png") no-repeat fixed center;
-  background: -webkit-gradient(to bottom, rgba(0,0,0, 0), rgba(0,0,0, 100)), url("../img/pirate.png") no-repeat fixed center;
-  background: -moz-linear-gradient(to bottom, rgba(0,0,0, 0), rgba(0,0,0, 100)), url("../img/pirate.png") no-repeat fixed center;
-  background-size: cover;
-
+  font-family: 'Montserrat', sans-serif;
+  background: url("../img/wallpaper.png") no-repeat, #171717;
+  min-width: 100%;
+  color: #fff;
 }
 
-#banner-pvp{
-  /* The image used */
-  /* Set a specific height */
-  //min-height: 700px;
-
-  /* Create the parallax scrolling effect */
-  background: linear-gradient(to bottom, rgba(255,255,255, 0.8), rgba(255,255,255, 0.8)), url("../img/banner-pvp.jpg") no-repeat fixed center;
-  background: -webkit-gradient(to bottom, rgba(255,255,255, 0.8), rgba(255,255,255, 0.8)), url("../img/banner-pvp.jpg") no-repeat fixed center;
-  background: -moz-linear-gradient(to bottom, rgba(255,255,255, 0.8), rgba(255,255,255, 0.8)), url("../img/banner-pvp.jpg") no-repeat fixed center;
-  background-size: cover;
-}
-
-#banner-title{
-  color: white;
-  text-transform: uppercase;
-  font-weight: 300;
-  font-family: 'Passion One', sans-serif;
-  text-align: center;
-}
-#pirate-img{
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  width: auto;
-  height: auto;
-}
-#topNav{
-  background: rgba(0,0,0,0);
-  padding-top: 50px;
+a, a:hover, a:focus, button, div, h1, h2, h3, h4, h5, h6, input, select, span, textarea {
+  outline: none;
 }
 
 section{
-  margin-top: 1%;
-  margin-bottom: 1%;
+  padding-top: 2em;
+  padding-bottom: 2em;
 }
-.mainBtn{
-  margin: 10px;
-  background: rgba(0,0,0,0.4);
-  padding: 0.7em 1em;
-  border-radius: 4px;
-  border: 1px solid #ffc107;
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
+
+#topNav{
+  padding-top: 3em;
+}
+.button{
+  display: inline-block;
+  height: 44px;
+  line-height: 40px;
+  padding: 0 20px;
+  white-space: nowrap;
+  border-radius: 3px;
+  border: 2px solid rgba(241,190,68,.4);
+  color: #fff;
+  background-color: transparent;
+  text-shadow: 0 1px 1px rgba(0,0,0,.2);
   text-transform: uppercase;
-  text-decoration: none;
-  color: #ffc107;
-  outline: none;
-  -webkit-transition: background .2s,color .2s;
-  transition: background .2s,color .2s;
-  font-family: 'Passion One', sans-serif;
+  font-weight: 700;
+  -webkit-transition: border-color .2s ease,background-color .2s ease;
+  -o-transition: border-color .2s ease,background-color .2s ease;
+  transition: border-color .2s ease,background-color .2s ease;
+  text-align: center;
 }
 
-.mainBtn:hover{
-  color: #FFFFFF;
-  background: #d39e00;
-  cursor: pointer;
+.btn--filled {
+  background-color: #f1be44;
+  border-color: #f1be44;
+  text-shadow: 0 1px 1px #d79410;
 }
 
-.secondaryBtn{
-  margin: 10px;
-  background: rgba(0,0,0,0.4);
-  padding: 0.7em 1em;
-  border-radius: 4px;
-  border: 1px solid white;
+.hero-subheader{
+  font-size: 16px;
+  font-weight: 900;
   text-transform: uppercase;
-  text-decoration: none;
-  color: white;
-  outline: none;
-  -webkit-transition: background .2s,color .2s;
-  transition: background .2s,color .2s;
-  font-family: 'Passion One', sans-serif;
+  letter-spacing: 4px;
+  color: #f1be44;
+  margin-bottom: 19px;
 }
 
-.secondaryBtn:hover{
-  color: black;
-  background: white;
-  cursor: pointer;
+.hero-header{
+  font-size: 58px;
+  font-weight: 900;
+  line-height: 64px;
+  margin-bottom: 47px;
 }
 
-.howto-step{
-  margin-bottom: 30px;
+.feature-subheader{
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 900;
+  margin-bottom: 15px;
+  color: #f1be44;
+  letter-spacing: 4px;
 }
 
-.step-left, .step-body{
-  display: table-cell;
-  vertical-align: top;
+.feature-header{
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 21px;
 }
 
-.circle-icon{
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid #d80027;
+.feature-content{
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  color: #898f9d;
+}
+
+.foo{
   position: relative;
-  margin-right: 10px;
+  width: 100%;
+  height: 185px;
+  border-radius: 3px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 29px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  background-size: cover;
+  background: no-repeat 50%;
+  overflow: hidden;
+  -webkit-box-shadow: 0 6px 10px 0 rgba(0,0,0,.25);
+  box-shadow: 0 6px 10px 0 rgba(0,0,0,.25);
+  border: 1px solid hsla(0,0%,100%,.1);
 }
 
-.circle-icon > *{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  color: #d80027;
+.foo-featured{
+  height: 400px;
+  padding-bottom: 39px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
 }
 
+#parallax-faq{
+  /* The image used */
+  background: linear-gradient(rgba(34, 37, 47, 0.2), rgba(34, 37, 47, 0.95)), url("../img/pirate.png");
 
-.arrow {
-  animation: bounceRight 1s infinite;
-}
+  /* Set a specific height */
+  height: 500px;
 
-.arrow-right{
-  transform: rotate(180deg);
-  -webkit-transform: rotate(180deg);
-}
-@keyframes bounceRight {
-  0%{
-    -webkit-transform: translateX(0);
-    -moz-transform: translateX(0);
-    -ms-transform: translateX(0);
-    -o-transform: translateX(0);
-    transform: translateX(0);
-  }
-  50%{
-    -webkit-transform: translateX(-30px);
-    -moz-transform: translateX(-30px);
-    -ms-transform: translateX(-30px);
-    -o-transform: translateX(-30px);
-    transform: translateX(-30px);
-  }
-  100%{
-    -webkit-transform: translateX(0);
-    -moz-transform: translateX(0);
-    -ms-transform: translateX(0);
-    -o-transform: translateX(0);
-    transform: translateX(0);
-  }
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-size: cover;
 
+  position: relative;
+  width: 100%;
+  border-radius: 3px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 29px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-bottom: 30px;
+  overflow: hidden;
+  -webkit-box-shadow: 0 6px 10px 0 rgba(0,0,0,.25);
+  box-shadow: 0 6px 10px 0 rgba(0,0,0,.25);
+  border: 1px solid hsla(0,0%,100%,.1);
 }

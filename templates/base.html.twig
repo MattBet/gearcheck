@@ -18,6 +18,9 @@
         {% endblock %}
     </head>
     <body>
+    <div id="backtotop"></div>
+    <div class="container">
+        {{ include('header.html.twig') }}
         {% block body %}{% endblock %}
         {% block javascripts %}
             <script src="{{ asset("build/js/app.js") }}"></script>

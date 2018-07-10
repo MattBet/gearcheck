@@ -7,7 +7,7 @@ body{
   color: #fff;
 }
 
-a, a:hover, a:focus, button, div, h1, h2, h3, h4, h5, h6, input, select, span, textarea {
+a, a:hover, a:focus, button, button:hover, div, h1, h2, h3, h4, h5, h6, input, select, span, textarea {
   outline: none;
 }
 
@@ -16,9 +16,49 @@ section{
   padding-bottom: 2em;
 }
 
-.col-centered{
-  float: none;
-  margin: 0 auto;
+input[type=text]{
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  padding: 8px 12px;
+  border-radius: 3px;
+  background: #616161;
+  -webkit-box-shadow: 0 6px 10px 0 rgba(0,0,0,.25);
+  box-shadow: 0 6px 10px 0 rgba(0,0,0,.25);
+  border: 1px solid hsla(0,0%,100%,.1);
+}
+
+input[type=password]{
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  padding: 8px 12px;
+  border-radius: 3px;
+  background: #616161;
+  -webkit-box-shadow: 0 6px 10px 0 rgba(0,0,0,.25);
+  box-shadow: 0 6px 10px 0 rgba(0,0,0,.25);
+  border: 1px solid hsla(0,0%,100%,.1);
+}
+
+input:focus{
+  border: 1px solid white;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #c2c2c2;
+  font-weight: 100;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #c2c2c2;
+  font-weight: 100;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #c2c2c2;
+  font-weight: 100;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #c2c2c2;
+  font-weight: 100;
 }
 
 #topNav{
@@ -41,7 +81,10 @@ section{
   -o-transition: border-color .2s ease,background-color .2s ease;
   transition: border-color .2s ease,background-color .2s ease;
   text-align: center;
+  cursor: pointer;
 }
+
+
 
 .btn--filled {
   background-color: #f1be44;
@@ -49,6 +92,15 @@ section{
   text-shadow: 0 1px 1px #d79410;
 }
 
+.btn-filled:hover{
+  background-color: #ffe695;
+  text-decoration: none;
+  color: white;
+}
+
+.btn--login{
+  width: 100%;
+}
 .btn--discord{
   display: inline-block;
   height: 45px;

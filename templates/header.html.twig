@@ -2,11 +2,11 @@
     <header>
         <nav class="navbar navbar-expand-lg">
             <a class="navbar-brand" href="{{ path('home') }}">GEARCHECK</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <div class="navbar-toggler" style="background: url('../img/menu.png'); height: 32px; width: 32px; cursor: pointer;" type="button" data-toggle="collapse" data-target="#navContent" aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            </div>
+
+            <div class="collapse navbar-collapse" id="navContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a class="nav-link button" href="#">HOW DOES IT WORKS</a>
@@ -15,13 +15,88 @@
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
+                        {% if not app.user %}
                         <a class="nav-link button btn--filled" href="#" data-toggle="modal" data-target="#loginModal"><span class="pr-2"><img src="../img/man-user.png" alt=""></span>Login</a>
+                        <a class="nav-link button" href="#" data-toggle="modal" data-target="#signupModal"><span class="pr-2"><img src="../img/man-user.png" alt=""></span>Sign up</a>
+                        {% else %}
+                        <a class="nav-link" href="/profile/{{ user.id }}"><img src="../img/profile.png" alt=""></a>
+
+
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><img src="../img/shopping-cart.png" alt=""></a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link button" href="{{ path('logout') }}"><span><img src="../img/sign-out.png" class="mr-2" alt=""></span>sign out</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
     </header>
 </section>
+
+<!-- MODALS -->
+<!-- CONTACT MODAL -->
+<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="feature-subheader">CONTACT</h5>
+                <a style="cursor: pointer;" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <img src="../img/error.png" alt="">
+                </a>
+            </div>
+            <div class="modal-body">
+                <div class="feature-content pb-3">Feel free to contact us for further information.</div>
+                <div class="contact-btn--group">
+                    <button class="btn btn--discord"><span class="pr-2"><img src="../img/discord.png" style="height: 24px; width: 24px;" alt=""></span>johndoe#0000</button>
+                    <button class="btn btn--skype"><span class="pr-2"><img src="../img/skype.png" style="height: 24px; width: 24px;" alt=""></span>johndoe#0000</button>
+                </div>
+
+                <div class="feature-content pt-3">Or contact us at <strong>mail@mail.com</strong></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="feature-subheader">LOGIN</h5>
+                <a style="cursor: pointer;" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <img src="../img/error.png" alt="">
+                </a>
+            </div>
+            <div class="modal-body">
+                <!-- LOGIN FORM -->
+                {{ render(controller('App\\Controller\\LoginController:login')) }}
+                <!-- END LOGIN FORM -->
+                <div class="pt-3">
+                    <a data-toggle="modal" data-dismiss="modal" data-target="#signupModal"><button class="button btn--large">JOIN US</button></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- SIGN UP MODAL -->
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="feature-subheader">SIGN UP</h5>
+                <a style="cursor: pointer;" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <img src="../img/error.png" alt="">
+                </a>
+            </div>
+            <div class="modal-body">
+                <!-- REGISTER FORM -->
+                {{ render(controller('App\\Controller\\RegistrationController:register')) }}
+                <!-- END REGISTER FORM -->
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,3 +1,5 @@
+let Routing = require('../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router')
+let Routes = require('./js_routes.json')
 // require jQuery normally
 const $ = require('jquery');
 
@@ -35,3 +37,5 @@ $(function() {
         }
     });
 });
+
+console.log(Routing)

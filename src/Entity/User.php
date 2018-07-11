@@ -32,7 +32,6 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @Assert\NotBlank()
      * @Assert\Length(max=4096)
      */
     private $plainPassword;
@@ -58,6 +57,49 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, unique=true)
      */
     private $email;
+
+    /**
+     *@ORM\Column(type="string", length=32, unique=true)
+     */
+    private $discord;
+
+    /**
+     * @return mixed
+     */
+    public function getDiscord()
+    {
+        return $this->discord;
+    }
+
+    /**
+     * @param mixed $discord
+     */
+    public function setDiscord($discord): void
+    {
+        $this->discord = $discord;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSkype()
+    {
+        return $this->skype;
+    }
+
+    /**
+     * @param mixed $skype
+     */
+    public function setSkype($skype): void
+    {
+        $this->skype = $skype;
+    }
+
+    /**
+     *@ORM\Column(type="string", length=255, unique=true)
+     */
+    private $skype;
+
 
     /**
      * @ORM\Column(type="array")

@@ -32,6 +32,19 @@ section{
   padding-bottom: 2em;
 }
 
+button{
+  cursor: pointer;
+}
+
+label{
+  font-size: 16px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #f19514;
+  margin-bottom: 8px;
+}
+
 input[type=text]{
   display: block;
   width: 100%;
@@ -315,4 +328,26 @@ input:focus{
   border: 1px solid hsla(0,0%,100%,.1);
 }
 
+
+@media (max-width: 1200px)
+{
+#little-square2::before {
+  display: none;
+  }
+}
+
+@media (max-width: 1024px)
+{
+  #big-square::after {
+    display: none;
+  }
+}
+
+#profile h1,h2,h3,h4,h5,h6{
+  color: black;
+}
+
+#myTabContent p{
+  color: grey;
+}
 

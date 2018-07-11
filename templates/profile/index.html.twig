@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if app.user %}
+    <div id="profile" class="card text-center">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs" id="profileTabs">
+                <li class="nav-item">
+                    <a class="nav-link active"  id="profile-tab" data-toggle="tab" href="#profile--info" role="tab" aria-controls="profile--info" aria-selected="true">Account info</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  id="setting-tab" data-toggle="tab" href="#profile--setting" role="tab" aria-controls="profile--setting" aria-selected="true">Settings</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="profile--info" role="tabpanel" aria-labelledby="home-tab">
+                <div class="row">
+                        <div class="col-lg-6"></div>
+                        <div class="col-lg-6">
+                            <div class="container">
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="col-lg-6">
+                            {{ form_start(form) }}
+                            {{ form_widget(form) }}
+                            <button class="btn">{{ button_label|default('Save') }}</button>
+                            {{ form_end(form) }}
+                        </div>
+                        <div class="col-lg-6"></div>
+                </div>
+
+            </div>
+            <div class="tab-pane fade" id="profile--setting" role="tabpanel" aria-labelledby="profile-tab">
+
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

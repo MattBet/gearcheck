@@ -29,9 +29,9 @@ class Category
     private $products;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Media", inversedBy="category", cascade={"persist", "remove"})
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $image_id;
+    private $image;
 
     public function __construct()
     {
@@ -86,14 +86,14 @@ class Category
         return $this;
     }
 
-    public function getImageId(): ?Media
+    public function getImage(): ?string
     {
-        return $this->image_id;
+        return $this->image;
     }
 
-    public function setImageId(?Media $image_id): self
+    public function setImage(?string $image): self
     {
-        $this->image_id = $image_id;
+        $this->image = $image;
 
         return $this;
     }

@@ -33,9 +33,9 @@ class Product
     private $price;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Media", cascade={"persist", "remove"})
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $image_id;
+    private $image;
 
     public function getId()
     {
@@ -78,14 +78,14 @@ class Product
         return $this;
     }
 
-    public function getImageId(): ?Media
+    public function getImage(): ?string
     {
-        return $this->image_id;
+        return $this->image;
     }
 
-    public function setImageId(?Media $image_id): self
+    public function setImage(?string $image): self
     {
-        $this->image_id = $image_id;
+        $this->image = $image;
 
         return $this;
     }

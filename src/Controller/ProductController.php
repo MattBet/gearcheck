@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @Route("/product")
@@ -20,7 +21,8 @@ class ProductController extends Controller
      */
     public function index(ProductRepository $productRepository): Response
     {
-        return $this->render('product/index.html.twig', ['products' => $productRepository->findAll()]);
+        return $this->render('product/index.html.twig', [
+            'products' => $productRepository->findAll()]);
     }
 
     /**
@@ -33,6 +35,15 @@ class ProductController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $file = $form->get('image')->getData();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+            $file->move(
+                $this->getParameter('image_dir'),$fileName
+            );
+
+            $product->setImage($fileName);
             $em = $this->getDoctrine()->getManager();
             $em->persist($product);
             $em->flush();

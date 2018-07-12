@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
+use App\Entity\Product;
 use App\Entity\User;
 use App\Form\RegisterType;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,19 +22,12 @@ class MainController extends Controller
      */
     public function index(Request $request, AuthenticationUtils $authenticationUtils, User $user = null)
     {
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-
-
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
-
-        $user = $this->getUser();
+        $products = $this->getDoctrine()->getRepository(Product::class)->findBy(array(), null, 9, null);
+        $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
 
         return $this->render('index.html.twig', array(
-            'last_username' => $lastUsername,
-            'error'         => $error,
-            'user'          => $user,
+            'products' => $products,
+            'categories'         => $categories,
         ));
 
     }

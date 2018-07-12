@@ -64,7 +64,27 @@
         <section id="whychooseus"></section>
 
         <section id="topselling">
-
+            <div class="feature-subheader text-center">
+                Our best sellers
+            </div>
+            <div class="feature-header text-center">
+                Top selling now
+            </div>
+                {% for productRow in products|batch(3) %}
+                    <div class="row">
+                        {% for product in productRow %}
+                            <div class="col-lg-4">
+                                <div class="home-product-group">
+                                    <div
+                                            style="background-image: url('../uploads/{{ product.image }}');" class="product-vignette-img">
+                                    </div>
+                                    <div class="product-vignette--title">{{ product.name }}</div>
+                                    <div class="product-vignette--price">{{ product.price }} €</div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
         </section>
 
         <section id="testimonial">

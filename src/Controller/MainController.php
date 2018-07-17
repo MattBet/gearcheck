@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Entity\Product;
+use App\Entity\Review;
 use App\Entity\User;
 use App\Form\RegisterType;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,10 +25,12 @@ class MainController extends Controller
     {
         $products = $this->getDoctrine()->getRepository(Product::class)->findBy(array(), null, 9, null);
         $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
+        $reviews = $this->getDoctrine()->getRepository(Review::class)->findAll();
 
         return $this->render('index.html.twig', array(
             'products' => $products,
             'categories'         => $categories,
+            'reviews' => $reviews
         ));
 
     }

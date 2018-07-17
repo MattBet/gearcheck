@@ -387,3 +387,67 @@ input:focus{
     box-shadow: 0px 6px 27px 0px rgba(250,188,0,0.08);
   }
 }
+
+//PRODUCT
+.product{
+  padding: 20px 0;
+  .product-title{
+    text-align: center;
+    font-size: 28px;
+    text-transform: uppercase;
+  }
+  .product-desc{
+    margin: 8px 0;
+  }
+  .product-eta{
+
+  }
+  .product-img{
+    margin-bottom: 10px;
+    height: 200px;
+    width: 100%;
+    background-size: cover;
+    background-position: 50% 50%;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 6px 10px 0 rgba(0,0,0,.25);
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,.25);
+    border: 1px solid hsla(0,0%,100%,.1);
+    transition: all .2s ease-in;
+  }
+  .product-price{
+    letter-spacing: 2px;
+    font-size: 24px;
+    padding: 5px 0;
+  }
+  .product-atc{
+    margin: 0;
+    padding: 0;
+  }
+}
+
+//REVIEW
+.product_reviews{
+  .review{
+    .card{
+      background: rgba(0,0,0,0.4);
+
+      .card-title{
+        text-transform: uppercase;
+        font-weight: 900;
+        margin-bottom: 15px;
+        color: #f1be44;
+        letter-spacing: 4px;
+      }
+
+      .card-text{
+        line-height: 2px;
+      }
+    }
+  }
+}
+
+.top--hr{
+  background-image: linear-gradient(to right, rgba(0,0,0,0), rgba(215,148,16,0.75), rgba(0,0,0,0));
+  overflow: visible;
+  height: 2px;
+}

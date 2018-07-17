@@ -74,13 +74,15 @@
                     <div class="row">
                         {% for product in productRow %}
                             <div class="col-lg-4">
-                                <div class="home-product-group">
-                                    <div
-                                            style="background-image: url('../uploads/{{ product.image }}');" class="product-vignette-img">
+                                <a href="product/{{ product.id }}">
+                                    <div class="home-product-group">
+                                        <div
+                                                style="background-image: url('../uploads/{{ product.image }}');" class="product-vignette-img">
+                                        </div>
+                                        <div class="product-vignette--title">{{ product.name }}</div>
+                                        <div class="product-vignette--price">{{ product.price }} €</div>
                                     </div>
-                                    <div class="product-vignette--title">{{ product.name }}</div>
-                                    <div class="product-vignette--price">{{ product.price }} €</div>
-                                </div>
+                                </a>
                             </div>
                         {% endfor %}
                     </div>
@@ -92,13 +94,12 @@
                 Testimonial
             </div>
             <div class="feature-header text-center">
-                0000 Reviews
+                {{ reviews|length }} Reviews
             </div>
             <div class="feature-content text-center">Et inde Syria advecticiis et interpatet inde advecticiis cognita et.
             </div>
         </section>
 
-    </div>
     <div class="container-fluid">
         <section id="faq">
             <div id="parallax-faq">
@@ -111,7 +112,7 @@
                     </div>
                     <div class="feature-content text-center">Et inde Syria advecticiis et interpatet inde advecticiis cognita et.
                     </div>
-                    <button class="button btn--filled btn--large"><a href="">Frequently Asked Questions</a></button>
+                    <button class="button btn--filled btn--large mt-5"><a href="#">Frequently Asked Questions</a></button>
                 </div>
             </div>
         </section>

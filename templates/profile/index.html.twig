@@ -29,7 +29,10 @@
                             <button class="btn">{{ button_label|default('Save') }}</button>
                             {{ form_end(form) }}
                         </div>
-                        <div class="col-lg-6"></div>
+                        <div class="col-lg-6">
+                            {{ dump(user) }}
+                            {{ app.user.id }}
+                        </div>
                 </div>
 
             </div>

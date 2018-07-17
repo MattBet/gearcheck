@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -38,6 +40,31 @@ class Product
      * @Assert\NotBlank(message="Choisissez une image")
      */
     private $image;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $shortDesc;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $longDesc;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $eta;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="product_id")
+     */
+    private $reviews;
+
+    public function __construct()
+    {
+        $this->reviews = new ArrayCollection();
+    }
 
     public function getId()
     {
@@ -88,6 +115,73 @@ class Product
     public function setImage(?string $image)
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getShortDesc(): ?string
+    {
+        return $this->shortDesc;
+    }
+
+    public function setShortDesc(?string $shortDesc): self
+    {
+        $this->shortDesc = $shortDesc;
+
+        return $this;
+    }
+
+    public function getLongDesc(): ?string
+    {
+        return $this->longDesc;
+    }
+
+    public function setLongDesc(?string $longDesc): self
+    {
+        $this->longDesc = $longDesc;
+
+        return $this;
+    }
+
+    public function getEta(): ?string
+    {
+        return $this->eta;
+    }
+
+    public function setEta(?string $eta): self
+    {
+        $this->eta = $eta;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Review[]
+     */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function addReview(Review $review): self
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews[] = $review;
+            $review->setProductId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Review $review): self
+    {
+        if ($this->reviews->contains($review)) {
+            $this->reviews->removeElement($review);
+            // set the owning side to null (unless already changed)
+            if ($review->getProductId() === $this) {
+                $review->setProductId(null);
+            }
+        }
 
         return $this;
     }

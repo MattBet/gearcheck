@@ -388,6 +388,30 @@ input:focus{
   }
 }
 
+//INDEX_REVIEW
+.index_review{
+  .review_user{
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+
+  .review_text{
+    font-style:italic;
+  }
+
+  .review-text::before{
+    content: '"';
+  }
+
+  .review-text::after{
+    content: '"';
+  }
+
+  .review_date{
+
+  }
+}
+
 //PRODUCT
 .product{
   padding: 20px 0;

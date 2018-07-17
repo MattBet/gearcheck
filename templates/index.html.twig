@@ -96,7 +96,39 @@
             <div class="feature-header text-center">
                 {{ reviews|length }} Reviews
             </div>
-            <div class="feature-content text-center">Et inde Syria advecticiis et interpatet inde advecticiis cognita et.
+            <div class="feature-content text-center">
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="index_review">
+                                <div class="review_user">
+                                    {{ reviews[1].user.username }}
+                                </div>
+                                <div class="review_text">
+                                    {{ reviews[1].comment }}
+                                </div>
+                                <div class="review_date">
+                                    {{ reviews[1].createdat|date("M d") }}
+                                </div>
+                            </div>
+                        </div>
+                        {% for review in reviews %}
+                        <div class="carousel-item">
+                            <div class="index_review">
+                                <div class="review_user">
+                                    {{ review.user.username }}
+                                </div>
+                                <div class="review_text">
+                                    {{ review.comment }}
+                                </div>
+                                <div class="review_date">
+                                    {{ review.createdat|date("M d") }}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </section>
 

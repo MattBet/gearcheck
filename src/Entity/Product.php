@@ -61,9 +61,15 @@ class Product
      */
     private $reviews;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Shipping", mappedBy="product")
+     */
+    private $cartProducts;
+
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
+        $this->cartProducts = new ArrayCollection();
     }
 
     public function getId()
@@ -180,6 +186,37 @@ class Product
             // set the owning side to null (unless already changed)
             if ($review->getProductId() === $this) {
                 $review->setProductId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Shipping[]
+     */
+    public function getCartProducts(): Collection
+    {
+        return $this->cartProducts;
+    }
+
+    public function addCartProduct(Shipping $cartProduct): self
+    {
+        if (!$this->cartProducts->contains($cartProduct)) {
+            $this->cartProducts[] = $cartProduct;
+            $cartProduct->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCartProduct(Shipping $cartProduct): self
+    {
+        if ($this->cartProducts->contains($cartProduct)) {
+            $this->cartProducts->removeElement($cartProduct);
+            // set the owning side to null (unless already changed)
+            if ($cartProduct->getProduct() === $this) {
+                $cartProduct->setProduct(null);
             }
         }
 

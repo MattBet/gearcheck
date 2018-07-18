@@ -10,10 +10,22 @@ class PanierController extends Controller
     /**
      * @Route("/panier", name="panier")
      */
-    public function index()
+    public function showAction()
     {
-        return $this->render('panier/index.html.twig', [
-            'controller_name' => 'PanierController',
-        ]);
+        $em = $this->getDoctrine()->getManager();
+
+        //get current User
+        $user = $this->getUser();
+
+        //Check if an user is logged in
+        if(!$user)
+        {
+            return $this->redirectToRoute('home');
+        }
+
+
+        return $this->render('panier/index.html.twig', array(
+            'user' => $user
+        ));
     }
 }

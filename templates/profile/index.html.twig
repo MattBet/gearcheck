@@ -18,17 +18,18 @@
                 <div class="row">
                         <div class="col-lg-6"></div>
                         <div class="col-lg-6">
-                            <div class="container">
-                            </div>
+                            <div class="container"></div>
                         </div>
                 </div>
-                <div class="row">
-                    <div class="profile_panel">
+                <div class="row" style="margin: 5em 5em;">
                         <div class="col-lg-6">
                             {{ form_start(form) }}
-                            {{ form_widget(form) }}
-                            <button class="btn">{{ button_label|default('Save') }}</button>
-                            {{ form_end(form) }}
+                            {{ form_row(form.username) }}
+                            {{ form_row(form.email) }}
+                            {{ form_row(form.discord, {'required': false, 'attr': {'placeholder': 'john#0000'}}) }}
+                            {{ form_row(form.skype, {'required': false, 'attr': {'placeholder': 'skype login'}}) }}
+                            {{ form_row(form.image, {'label_attr': {'class': '_upload button button--filled'}, 'label': 'Choose a profile image'}) }}
+                            <button type="submit" class="button btn--filled btn--large">{{ button_label|default('Save') }}</button>
                         </div>
                         <div class="col-lg-6">
                             {% if user.image %}
@@ -36,10 +37,8 @@
                             {% else %}
                                 <img src="../img/default-avatar.jpg" alt="">
                             {% endif %}
-                        </div>  
-                    </div>
+                        </div>
                 </div>
-
             </div>
             <div class="tab-pane fade" id="profile--setting" role="tabpanel" aria-labelledby="profile-tab">
 

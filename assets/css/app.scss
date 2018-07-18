@@ -355,12 +355,40 @@ input:focus{
   }
 }
 
+#profile{
+  background: rgba(0,0,0,0.4);
+
+  li .active
+  {
+    background: rgba(0,0,0,0.4);
+    border: 0.175em solid rgba(0,0,0,0.2);
+  }
+
+  label{
+    margin-top: 2em;
+  }
+
+  ._upload{
+    display: block;
+    margin-bottom: 2em;
+
+  }
+
+  input[type=file]{
+    display:none;
+  }
+}
+
 #profile h1,h2,h3,h4,h5,h6{
   color: black;
 }
 
+
+
+
 #myTabContent p{
   color: grey;
+
 }
 
 // TOP SELLING
@@ -480,4 +508,22 @@ input:focus{
   background-image: linear-gradient(to right, rgba(0,0,0,0), rgba(215,148,16,0.75), rgba(0,0,0,0));
   overflow: visible;
   height: 2px;
+}
+
+//FOOTER
+.footer_hr{
+  background-image: linear-gradient(to right, rgba(0,0,0,0), rgba(215,148,16,0.75), rgba(0,0,0,0));
+  overflow: visible;
+  height: 2px;
+}
+
+#bottomNav{
+
+  h5{
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: #f1be44;
+    margin-bottom: 19px;
+  }
 }

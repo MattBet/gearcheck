@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Entity\Review;
 use App\Entity\User;
 use App\Form\ProductType;
+use App\Form\ReviewType;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -59,11 +61,30 @@ class ProductController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="product_show", methods="GET")
+     * @Route("/{id}", name="product_show")
      */
-    public function show(Product $product): Response
+    public function show($id, Request $request): Response
     {
-        return $this->render('product/show.html.twig', ['product' => $product]);
+        $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
+
+
+        $review = new Review();
+        $formReview = $this->createForm(ReviewType::class, $review);
+        $formReview->handleRequest($request);
+        if ($formReview->isSubmitted() && $formReview->isValid())
+        {
+            $review->setCreatedAt(new \DateTime());
+            $review->setUser($this->getUser());
+            $review->setProductId($product);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($review);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('product_show', array('id' => $product->getId())), 301);
+        }
+        return $this->render('product/show.html.twig', ['product' => $product,
+                                                                'formReview' => $formReview->createView()]);
     }
 
     /**

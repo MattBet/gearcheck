@@ -23,6 +23,7 @@
                         </div>
                 </div>
                 <div class="row">
+                    <div class="profile_panel">
                         <div class="col-lg-6">
                             {{ form_start(form) }}
                             {{ form_widget(form) }}
@@ -30,9 +31,13 @@
                             {{ form_end(form) }}
                         </div>
                         <div class="col-lg-6">
-                            {{ dump(user) }}
-                            {{ app.user.id }}
-                        </div>
+                            {% if user.image %}
+                                <img src="../uploads/{{ user.image }}" class="img-fluid" alt="">
+                            {% else %}
+                                <img src="../img/default-avatar.jpg" alt="">
+                            {% endif %}
+                        </div>  
+                    </div>
                 </div>
 
             </div>

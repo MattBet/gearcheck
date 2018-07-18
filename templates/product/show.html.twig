@@ -59,5 +59,16 @@
                     </div>
             </div>
         </div>
+        <div class="product_review_edit">
+            <div class="row">
+                <div class="col-lg-12">
+                    {{ form_start(formReview) }}
+                    {{ form_row(formReview.comment, {'attr': {'placeholder': "Enter a comment..."}}) }}
+
+                    <button type="submit" class=" mt-5 button btn--filled btn--large">Save</button>
+                    {{ form_end(formReview) }}
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

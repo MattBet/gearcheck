@@ -29,6 +29,8 @@ class RegistrationController extends Controller
 
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
+            $user->setSkype('');
+            $user->setDiscord('');
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);

@@ -23,6 +23,16 @@ class UserController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->get('image')->getData();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+            $file->move(
+                $this->getParameter('image_dir'),$fileName
+            );
+
+            $user->setImage($fileName);
+
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirect($this->generateUrl('profile', array('id' => $user->getId())), 301);

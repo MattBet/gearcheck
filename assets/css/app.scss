@@ -57,6 +57,18 @@ input[type=text]{
   border: 1px solid hsla(0,0%,100%,.1);
 }
 
+textarea{
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  padding: 8px 12px;
+  border-radius: 3px;
+  background: #616161;
+  -webkit-box-shadow: 0 6px 10px 0 rgba(0,0,0,.25);
+  box-shadow: 0 6px 10px 0 rgba(0,0,0,.25);
+  border: 1px solid hsla(0,0%,100%,.1);
+}
+
 input[type=password]{
    display: block;
    width: 100%;
@@ -393,22 +405,16 @@ input:focus{
   .review_user{
     text-transform: uppercase;
     letter-spacing: 3px;
+    margin: 15px;
   }
 
   .review_text{
     font-style:italic;
-  }
-
-  .review-text::before{
-    content: '"';
-  }
-
-  .review-text::after{
-    content: '"';
+    margin: 15px;
   }
 
   .review_date{
-
+    margin: 15px;
   }
 }
 

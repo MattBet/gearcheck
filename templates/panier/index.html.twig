@@ -23,7 +23,7 @@
             <td>{{ product.product.price}} €</td>
             <td>
                 <form action="{{ path('cart_delete', {'product_id': product.product.id, 'cart_id': cart_data.id}) }}">
-                    <button class="button btn--large btn--filled">Delete</button>
+                    <button type="submit" style="background: transparent; border: 0;"><img src="../img/waste-bin.png" alt=""></button>
                 </form>
             </td>
             </tr>
@@ -34,16 +34,36 @@
             </tr>
 
         {% endfor %}
+        //TOTAL PRICE
         <tr>
             <td colspan="4"></td>
             <th>Total</th>
             <td>{{ cart_data.getTotalPrice() }}</td>
         </tr>
+
+        //CHECKOUT BUTTON
+        <tr>
+            <td colspan="5"></td>
+            <td>
+                <form action="">
+                    <button type="submit" class="button btn--large" style="animation: shake 2s infinite;">CHECKOUT</button>
+                </form>
+            </td>
+        </tr>
+
+        //CLEAR CART BUTTON
+        <tr>
+            <td colspan="5"></td>
+            <td>
+                <form action="{{ path('cart_clear', {'cart_id': cart_data.id}) }}">
+                    <button type="submit" class="button btn--large btn--filled">
+                        Clear cart
+                    </button>
+                </form>
+            </td>
+        </tr>
         </tbody>
     </table>
-
-    {{ dump(cart_data) }}
-        {{ dump(user_products) }}
         {% else %}
         <p>Your shopping cart is empty</p>
     {% endif %}

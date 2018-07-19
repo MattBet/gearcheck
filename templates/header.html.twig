@@ -72,7 +72,7 @@
             </div>
             <div class="modal-body">
                 <!-- LOGIN FORM -->
-                {{ render(controller('App\\Controller\\LoginController:login')) }}
+                {{ render(controller('App\\Controller\\LoginController::login')) }}
                 <!-- END LOGIN FORM -->
                 <div class="pt-3">
                     <a data-toggle="modal" data-dismiss="modal" data-target="#signupModal"><button class="button btn--large">JOIN US</button></a>
@@ -94,7 +94,7 @@
             </div>
             <div class="modal-body">
                 <!-- REGISTER FORM -->
-                {{ render(controller('App\\Controller\\RegistrationController:register')) }}
+                {{ render(controller('App\\Controller\\RegistrationController::register')) }}
                 <!-- END REGISTER FORM -->
             </div>
         </div>

@@ -20,7 +20,23 @@ class Review
      * @ORM\ManyToOne(targetEntity="App\Entity\Product", inversedBy="reviews")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $product_id;
+    private $product;
+
+    /**
+     * @return mixed
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    /**
+     * @param mixed $product
+     */
+    public function setProduct($product): void
+    {
+        $this->product = $product;
+    }
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="reviews")
@@ -38,21 +54,14 @@ class Review
      */
     private $created_at;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $vote;
+
     public function getId()
     {
         return $this->id;
-    }
-
-    public function getProductId(): ?product
-    {
-        return $this->product_id;
-    }
-
-    public function setProductId(?product $product_id = null): self
-    {
-        $this->product_id = $product_id;
-
-        return $this;
     }
 
     public function getUser(): ?User
@@ -87,6 +96,18 @@ class Review
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getVote(): ?int
+    {
+        return $this->vote;
+    }
+
+    public function setVote(int $vote): self
+    {
+        $this->vote = $vote;
 
         return $this;
     }

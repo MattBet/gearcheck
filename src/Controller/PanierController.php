@@ -127,4 +127,35 @@ class PanierController extends Controller
 
         return $this->redirectToRoute('panier');
     }
+
+    /**
+     * @Route("/panier/clear/{cart_id}", name="cart_clear")
+     */
+    public function clearAction($cart_id){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $repo = $this->getDoctrine()->getRepository(Shipping::class);
+
+        $ship = $repo->findBy(["cart" => $cart_id]);
+
+        foreach ($ship as $product)
+        {
+            $em->remove($product);
+            $em->flush();
+        }
+
+        $cart_repo = $this->getDoctrine()->getRepository(Cart::class);
+        $cart = $cart_repo->find($cart_id);
+
+        $em->remove($cart);
+        $em->flush();
+
+        return $this->redirectToRoute('panier');
+
+
+
+
+
+    }
 }

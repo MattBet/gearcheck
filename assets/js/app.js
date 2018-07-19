@@ -1,11 +1,3 @@
-let Routing = require('../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router')
-let Routes = require('./js_routes.json')
-// require jQuery normally
-const $ = require('jquery');
-
-// create global $ and jQuery variables
-global.$ = global.jQuery = $;
-
 $(function() {
     $(window).scroll(function() {
         if($(this).scrollTop() != 0) {
@@ -37,5 +29,3 @@ $(function() {
         }
     });
 });
-
-console.log(Routing)

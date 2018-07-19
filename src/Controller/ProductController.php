@@ -134,4 +134,14 @@ class ProductController extends Controller
 
         return $this->redirectToRoute('product_index');
     }
+
+    /**
+     * @Route("/{product_id}/vote/{review_id}", name="vote_review", methods={"POST"})
+     */
+    public function voteAction($product_id, $review_id)
+    {
+        $review = $this->getDoctrine()->getRepository(Review::class)->findOneBy(['product' => $product_id, 'id' => $review_id]);
+
+        return $this->json(['vote' => $review->getVote()]);
+    }
 }

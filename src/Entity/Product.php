@@ -57,7 +57,7 @@ class Product
     private $eta;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="product_id")
+     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="product")
      */
     private $reviews;
 

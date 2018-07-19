@@ -24,7 +24,7 @@ class Cart
     private $total_price;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="cart", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="cart")
      */
     private $user;
 

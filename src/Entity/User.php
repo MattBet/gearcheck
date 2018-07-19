@@ -61,7 +61,7 @@ class User implements UserInterface
     private $email;
 
     /**
-     *@ORM\Column(type="string", length=32, unique=true)
+     *@ORM\Column(type="string", length=32, unique=false)
      */
     private $discord;
 
@@ -98,7 +98,7 @@ class User implements UserInterface
     }
 
     /**
-     *@ORM\Column(type="string", length=255, unique=true)
+     *@ORM\Column(type="string", length=255, unique=false)
      */
     private $skype;
 

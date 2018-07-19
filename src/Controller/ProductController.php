@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Cart;
 use App\Entity\Product;
 use App\Entity\Review;
+use App\Entity\Shipping;
 use App\Entity\User;
 use App\Form\ProductType;
 use App\Form\ReviewType;
@@ -67,6 +69,17 @@ class ProductController extends Controller
     {
         $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
 
+        //get current User
+        $token = $this->get('security.token_storage')->getToken();
+        $user = $token->getUser();
+
+        $user_cart = $this->getDoctrine()->getRepository(Cart::class)->findBy(['user' => $user]);
+
+        $user_products = null;
+        if($user_cart) {
+            $user_products = $this->getDoctrine()->getRepository(Shipping::class)->findBy(['cart' => $user_cart[0]->getId()]);
+        }
+
 
         $review = new Review();
         $formReview = $this->createForm(ReviewType::class, $review);
@@ -84,7 +97,8 @@ class ProductController extends Controller
             return $this->redirect($this->generateUrl('product_show', array('id' => $product->getId())), 301);
         }
         return $this->render('product/show.html.twig', ['product' => $product,
-                                                                'formReview' => $formReview->createView()]);
+                                                                'formReview' => $formReview->createView(),
+                                                                'user_products' => $user_products]);
     }
 
     /**

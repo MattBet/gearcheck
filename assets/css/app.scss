@@ -145,10 +145,10 @@ input:focus{
   text-shadow: 0 1px 1px #d79410;
 }
 
-.btn-filled:hover{
-  background-color: #ffe695;
-  text-decoration: none;
-  color: white;
+.btn--disabled{
+  cursor: not-allowed;
+  background-color: grey;
+  border-color: grey;
 }
 
 .btn--large{
@@ -525,5 +525,13 @@ input:focus{
     letter-spacing: 4px;
     color: #f1be44;
     margin-bottom: 19px;
+  }
+}
+
+//CART_TABLE
+#cart_table{
+  width: 100%;
+  th, td{
+    padding: 1.25em;
   }
 }

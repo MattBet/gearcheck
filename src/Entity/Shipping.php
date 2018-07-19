@@ -13,16 +13,18 @@ class Shipping
      * @ORM\Column(type="integer")
      */
     private $quantity;
+
     /**
      * @ORM\Id()
-     * @ORM\ManyToOne(targetEntity="Product", inversedBy="cartProducts")
-     */
-    private $product;
-    /**
-     * @ORM\Id()
-     * @ORM\ManyToOne(targetEntity="Cart", inversedBy="cartProducts")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Cart", inversedBy="products")
      */
     private $cart;
+
+    /**
+     * @ORM\Id()
+     * @ORM\ManyToOne(targetEntity="App\Entity\Product", inversedBy="shippings")
+     */
+    private $product;
 
     public function getQuantity(): ?int
     {

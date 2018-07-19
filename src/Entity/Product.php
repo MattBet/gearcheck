@@ -62,14 +62,15 @@ class Product
     private $reviews;
 
     /**
-     * @ORM\OneToMany(targetEntity="Shipping", mappedBy="product")
+     * @ORM\OneToMany(targetEntity="App\Entity\Shipping", mappedBy="product")
      */
-    private $cartProducts;
+    private $shippings;
 
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
         $this->cartProducts = new ArrayCollection();
+        $this->shippings = new ArrayCollection();
     }
 
     public function getId()
@@ -195,28 +196,28 @@ class Product
     /**
      * @return Collection|Shipping[]
      */
-    public function getCartProducts(): Collection
+    public function getShippings(): Collection
     {
-        return $this->cartProducts;
+        return $this->shippings;
     }
 
-    public function addCartProduct(Shipping $cartProduct): self
+    public function addShipping(Shipping $shipping): self
     {
-        if (!$this->cartProducts->contains($cartProduct)) {
-            $this->cartProducts[] = $cartProduct;
-            $cartProduct->setProduct($this);
+        if (!$this->shippings->contains($shipping)) {
+            $this->shippings[] = $shipping;
+            $shipping->setProduct($this);
         }
 
         return $this;
     }
 
-    public function removeCartProduct(Shipping $cartProduct): self
+    public function removeShipping(Shipping $shipping): self
     {
-        if ($this->cartProducts->contains($cartProduct)) {
-            $this->cartProducts->removeElement($cartProduct);
+        if ($this->shippings->contains($shipping)) {
+            $this->shippings->removeElement($shipping);
             // set the owning side to null (unless already changed)
-            if ($cartProduct->getProduct() === $this) {
-                $cartProduct->setProduct(null);
+            if ($shipping->getProduct() === $this) {
+                $shipping->setProduct(null);
             }
         }
 

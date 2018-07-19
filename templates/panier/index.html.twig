@@ -1,5 +1,50 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ dump(user_products) }}
+    {% if user_products|default %}
+    <table id="cart_table" style="background: rgba(0,0,0,0.2);">
+        <thead>
+            <tr>
+                <th scope="col">Ref</th>
+                <th scope="col"></th>
+                <th scope="col">Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in user_products %}
+            <tr>
+            <td>{{ product.product.id}}</td>
+            <td><img class="img-fluid" style="width: 200px;" src="../uploads/{{ product.product.image }}" alt=""></td>
+            <td>{{ product.product.name}}</td>
+            <td>{{ product.quantity}}</td>
+            <td>{{ product.product.price}} €</td>
+            <td>
+                <form action="{{ path('cart_delete', {'product_id': product.product.id, 'cart_id': cart_data.id}) }}">
+                    <button class="button btn--large btn--filled">Delete</button>
+                </form>
+            </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <hr class="footer_hr">
+                </td>
+            </tr>
+
+        {% endfor %}
+        <tr>
+            <td colspan="4"></td>
+            <th>Total</th>
+            <td>{{ cart_data.getTotalPrice() }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    {{ dump(cart_data) }}
+        {{ dump(user_products) }}
+        {% else %}
+        <p>Your shopping cart is empty</p>
+    {% endif %}
 {% endblock %}

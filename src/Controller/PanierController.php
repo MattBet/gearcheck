@@ -17,9 +17,7 @@ class PanierController extends Controller
     public function showAction()
     {
         //get current User
-        $auth_checker = $this->get('security.authorization_checker');
         $token = $this->get('security.token_storage')->getToken();
-        $state = $auth_checker->isGranted("IS_AUTHENTICATED_FULLY");
         $user = $token->getUser();
 
         //Check if an user is logged in
@@ -43,12 +41,7 @@ class PanierController extends Controller
 
 
 
-        return $this->render('panier/index.html.twig', array(
-            'auth' => $auth_checker,
-            'user' => $user,
-            'user_cart' => $user_cart,
-            'state' => $state
-        ));
+        return $this->render('panier/index.html.twig');
     }
 
     /**
@@ -77,54 +70,61 @@ class PanierController extends Controller
             if (!$exist_cart)
             {
                 $cart = new Cart();
-
                 $cart->setUser($user);
-
                 $cart->setTotalPrice($product->getPrice());
 
                 $em->persist($cart);
-
                 $em->flush();
 
                 $ship = new Shipping();
-
                 $ship->setQuantity(1);
-
                 $ship->setProduct($product);
-
                 $ship->setCart($cart);
 
                 $em->persist($ship);
-
                 $em->flush();
             }
             else
             {
                 $cart = $exist_cart[0];
-
                 $cart->setTotalPrice($cart->getTotalPrice() + $product->getPrice());
 
                 $em->persist($cart);
-
                 $em->flush();
 
-
                 $ship = new Shipping();
-
                 $ship->setQuantity(1);
-
                 $ship->setProduct($product);
-
                 $ship->setCart($cart);
 
                 $em->persist($ship);
-
                 $em->flush();
             }
 
-            return $this->redirectToRoute('panier');
+            return $this->redirectToRoute('product_index');
         }
 
         return $this->redirectToRoute('home');
+    }
+
+    /**
+     * @Route("/panier/delete/{product_id}/{cart_id}", name="cart_delete")
+     */
+    public function deleteAction($product_id, $cart_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repo = $this->getDoctrine()->getRepository(Shipping::class);
+
+        $ship = $repo->findOneBy(['product' => $product_id, 'cart' => $cart_id]);
+
+        $new_price = $ship->getCart()->getTotalPrice() - ($ship->getProduct()->getPrice() * $ship->getQuantity());
+
+        $ship->getCart()->setTotalPrice($new_price);
+
+        $em->remove($ship);
+
+        $em->flush();
+
+        return $this->redirectToRoute('panier');
     }
 }

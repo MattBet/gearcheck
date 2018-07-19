@@ -31,9 +31,19 @@
                     {{ product.price }} €
                 </div>
                 <div class="product-atc">
-                    <a href="/panier/add/{{ product.id }}"><button class="button btn--filled btn--large">
-                    ADD TO CART
-                        </button></a>
+
+                    <form action='{{ path('add_to_cart', {'id': product.getId()}) }}'>
+                        {% if user_products|default %}
+                            {% for cart_product in user_products %}
+                                {% if cart_product.product == product %}
+                                    <button disabled type="submit" class="button btn--filled btn--large btn--disabled">ALREADY IN YOUR CART</button>
+                                    {% set break = true %}
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <button type="submit" class="button btn--filled btn--large">ADD TO CART</button>
+                        {% endif %}
+                    </form>
                 </div>
             </div>
         </div>
@@ -63,7 +73,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     {{ form_start(formReview) }}
-                    {{ form_row(formReview.comment, {'attr': {'placeholder': "Enter a comment..."}}) }}
+                    {{ form_row(formReview.comment, {'required': false,'attr': {'placeholder': "Enter a comment..."}}) }}
 
                     <button type="submit" class=" mt-5 button btn--filled btn--large">Save</button>
                     {{ form_end(formReview) }}

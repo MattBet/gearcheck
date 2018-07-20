@@ -31,18 +31,22 @@
                     {{ product.price }} €
                 </div>
                 <div class="product-atc">
-
-                    <form action='{{ path('add_to_cart', {'id': product.getId()}) }}'>
-                        {% if user_products|default %}
+                    {{ dump(user_products) }}
+                    <form action='{{ path('add_to_cart', {'id': product.getId()}) }}' class="ajax_atc">
+                        {% set _intoCart = false %}
                             {% for cart_product in user_products %}
                                 {% if cart_product.product == product %}
-                                    <button disabled type="submit" class="button btn--filled btn--large btn--disabled">ALREADY IN YOUR CART</button>
+                                    {% set _intoCart = true %}
                                     {% set break = true %}
                                 {% endif %}
                             {% endfor %}
+
+                        {% if _intoCart %}
+                            <button disabled type="submit" class="button btn--filled btn--large btn--disabled">ALREADY IN YOUR CART</button>
                         {% else %}
                             <button type="submit" class="button btn--filled btn--large">ADD TO CART</button>
                         {% endif %}
+
                     </form>
                 </div>
             </div>
@@ -59,7 +63,7 @@
                                     <div class="card mb-3 border-0">
                                         <div class="card-body">
                                             <h5 class="card-title"><span><img class="mr-3" src="../img/profile.png" alt=""></span>{{ review.user.username }}
-                                                //AJAX ON LIKE/DISLIKE REVIEW
+                                                <!-- AJAX ON LIKE/DISLIKE REVIEW -->
                                                 <a href="{{ path('vote_review', {'review_id': review.id, 'product_id': product.id}) }}" class="float-right"><small class="text-muted">TEST</small></a></h5>
                                             <p class="card-text mt-5 ml-5">{{ review.comment }}</p>
                                             <p class="card-text mt-5 float-right"><small class="text-muted">Le {{ review.createdat | date("d F Y") }} à {{ review.createdat | date("G:i") }}</small></p>

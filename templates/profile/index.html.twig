@@ -30,6 +30,7 @@
                             {{ form_row(form.skype, {'required': false, 'attr': {'placeholder': 'skype login'}}) }}
                             {{ form_row(form.image, {'label_attr': {'class': '_upload button button--filled'}, 'label': 'Choose a profile image'}) }}
                             <button type="submit" class="button btn--filled btn--large">{{ button_label|default('Save') }}</button>
+                            {{ form_end(form) }}
                         </div>
                         <div class="col-lg-6">
                             {% if user.image %}

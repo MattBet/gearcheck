@@ -35,6 +35,7 @@ class UserController extends Controller
 
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success','Your profile has been edited');
             return $this->redirect($this->generateUrl('profile', array('id' => $user->getId())), 301);
         }
 

@@ -18,7 +18,8 @@ class UserType extends AbstractType
             ->add('discord')
             ->add('skype')
             ->add('image', FileType::class, array(
-                'data_class' => null
+                'data_class' => null,
+                'required' => false,
             ))
         ;
     }

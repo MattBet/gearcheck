@@ -6,6 +6,7 @@ use App\Entity\Cart;
 use App\Entity\Product;
 use App\Entity\Shipping;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -101,6 +102,8 @@ class PanierController extends Controller
                 $em->flush();
             }
 
+            $this->addFlash('success', 'This item has been added to your cart');
+
             return $this->redirectToRoute('product_index');
         }
 
@@ -119,11 +122,22 @@ class PanierController extends Controller
 
         $new_price = $ship->getCart()->getTotalPrice() - ($ship->getProduct()->getPrice() * $ship->getQuantity());
 
+
         $ship->getCart()->setTotalPrice($new_price);
 
         $em->remove($ship);
 
         $em->flush();
+
+        if ($ship->getCart()->getTotalPrice() == 0)
+        {
+            $cart = $this->getDoctrine()->getRepository(Cart::class)->find($cart_id);
+
+            $em->remove($cart);
+            $em->flush();
+        }
+
+        $this->addFlash('success', 'Product has been removed');
 
         return $this->redirectToRoute('panier');
     }
@@ -150,6 +164,8 @@ class PanierController extends Controller
 
         $em->remove($cart);
         $em->flush();
+
+        $this->addFlash('success', 'Your cart has been cleared');
 
         return $this->redirectToRoute('panier');
 

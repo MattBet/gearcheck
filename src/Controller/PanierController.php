@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Cart;
 use App\Entity\Product;
 use App\Entity\Shipping;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -54,57 +56,54 @@ class PanierController extends Controller
         $auth_checker = $this->get('security.authorization_checker');
         $user_logged = $auth_checker->isGranted("IS_AUTHENTICATED_FULLY");
 
-        if ($user_logged)
-        {
-            $em = $this->getDoctrine()->getManager();
+        if($request->isXmlHttpRequest()) {
+            if ($user_logged) {
+                //Get entity manager
+                $em = $this->getDoctrine()->getManager();
+                //Get user
+                $token = $this->get('security.token_storage')->getToken();
+                $user = $token->getUser();
+                //Get product
+                $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
+                //Get user cart
+                $exist_cart = $this->getDoctrine()->getRepository(Cart::class)->findBy(['user' => $user]);
 
-            //Get user
-            $token = $this->get('security.token_storage')->getToken();
-            $user = $token->getUser();
+                if (!$exist_cart) {
+                    $cart = new Cart();
+                    $cart->setUser($user);
+                    $cart->setTotalPrice($product->getPrice());
 
-            //Get product id
-            $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
+                    $em->persist($cart);
+                    $em->flush();
 
-            //Check if user has cart
-            $exist_cart = $this->getDoctrine()->getRepository(Cart::class)->findBy(['user' => $user]);
+                    $ship = new Shipping();
+                    $ship->setQuantity(1);
+                    $ship->setProduct($product);
+                    $ship->setCart($cart);
 
-            if (!$exist_cart)
-            {
-                $cart = new Cart();
-                $cart->setUser($user);
-                $cart->setTotalPrice($product->getPrice());
+                    $em->persist($ship);
+                    $em->flush();
+                } else {
+                    $cart = $exist_cart[0];
+                    $cart->setTotalPrice($cart->getTotalPrice() + $product->getPrice());
 
-                $em->persist($cart);
-                $em->flush();
+                    $em->persist($cart);
+                    $em->flush();
 
-                $ship = new Shipping();
-                $ship->setQuantity(1);
-                $ship->setProduct($product);
-                $ship->setCart($cart);
+                    $ship = new Shipping();
+                    $ship->setQuantity(1);
+                    $ship->setProduct($product);
+                    $ship->setCart($cart);
 
-                $em->persist($ship);
-                $em->flush();
+                    $em->persist($ship);
+                    $em->flush();
+                }
+
+                $this->addFlash('success', 'This item has been added to your cart');
+
+                return new JsonResponse(['message' => 'success',
+                    'entity' => $product]);
             }
-            else
-            {
-                $cart = $exist_cart[0];
-                $cart->setTotalPrice($cart->getTotalPrice() + $product->getPrice());
-
-                $em->persist($cart);
-                $em->flush();
-
-                $ship = new Shipping();
-                $ship->setQuantity(1);
-                $ship->setProduct($product);
-                $ship->setCart($cart);
-
-                $em->persist($ship);
-                $em->flush();
-            }
-
-            $this->addFlash('success', 'This item has been added to your cart');
-
-            return $this->redirectToRoute('product_index');
         }
 
         return $this->redirectToRoute('home');

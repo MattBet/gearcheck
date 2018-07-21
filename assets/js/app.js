@@ -35,3 +35,35 @@ $(function() {
         $(this).delay(2500).fadeOut();
     });
 });
+
+$('.ajax_atc').submit(function(e){
+    console.log('clicked')
+    e.preventDefault()
+
+    var button = $(this).find('button');
+
+    $.ajax({
+    type: $(this).attr('method'),
+    url: $(this).attr('action'),
+    data: $(this).serializeArray,
+    beforeSend: function (){
+        button.html('LOADING...');
+        button.removeClass();
+        button.addClass('button--disabled btn--large');
+        button.attr('disabled','true');
+        button.blur();
+    },
+    success: function(){
+
+    },
+    }).done(function(response) {
+
+        button.html('HAS BEEN ADDED TO YOUR CART');
+        button.removeClass();
+        button.addClass('button--disabled btn--large');
+        button.attr('disabled','true');
+        button.blur();
+    });
+
+
+});

@@ -36,6 +36,7 @@ $(function() {
     });
 });
 
+//ATC
 $('.ajax_atc').submit(function(e){
     console.log('clicked')
     e.preventDefault()
@@ -54,16 +55,38 @@ $('.ajax_atc').submit(function(e){
         button.blur();
     },
     success: function(){
-
-    },
-    }).done(function(response) {
-
         button.html('HAS BEEN ADDED TO YOUR CART');
         button.removeClass();
         button.addClass('button--disabled btn--large');
         button.attr('disabled','true');
         button.blur();
+    },
+    }).done(function(response) {
+        console.log(response);
     });
 
 
+});
+
+
+//CLEAR CART
+$('.ajax_atc--clear').submit(function(e){
+    console.log('clicked');
+    e.preventDefault();
+
+    form = $(this);
+    console.log($(this));
+    $.ajax({
+        type: $(this).attr('method'),
+        url: $(this).attr('action'),
+        data: $(this).serializeArray(),
+        success: function () {
+            //form.parent().parent().parent().parent().remove();
+            $('table#cart-table').remove();
+            console.log(form.parent().parent().parent().parent().remove());
+            $('.empty_cart').html('Your shopping cart is empty');
+        }
+    }).done(function (msg) {
+        console.log(msg);
+    })
 });

@@ -144,33 +144,31 @@ class PanierController extends Controller
     /**
      * @Route("/panier/clear/{cart_id}", name="cart_clear")
      */
-    public function clearAction($cart_id){
+    public function clearAction(Request $request, $cart_id){
 
-        $em = $this->getDoctrine()->getManager();
+        if($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
 
-        $repo = $this->getDoctrine()->getRepository(Shipping::class);
+            $repo = $this->getDoctrine()->getRepository(Shipping::class);
 
-        $ship = $repo->findBy(["cart" => $cart_id]);
+            $ship = $repo->findBy(["cart" => $cart_id]);
 
-        foreach ($ship as $product)
-        {
-            $em->remove($product);
+            foreach ($ship as $product) {
+                $em->remove($product);
+                $em->flush();
+            }
+
+            $cart_repo = $this->getDoctrine()->getRepository(Cart::class);
+            $cart = $cart_repo->find($cart_id);
+
+            $em->remove($cart);
             $em->flush();
+
+            $this->addFlash('success', 'Your cart has been cleared');
+
+            return new JsonResponse(['message' => 'success', 'cart' => $cart]);
         }
 
-        $cart_repo = $this->getDoctrine()->getRepository(Cart::class);
-        $cart = $cart_repo->find($cart_id);
-
-        $em->remove($cart);
-        $em->flush();
-
-        $this->addFlash('success', 'Your cart has been cleared');
-
         return $this->redirectToRoute('panier');
-
-
-
-
-
     }
 }

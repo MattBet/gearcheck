@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegisterType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -37,7 +38,7 @@ class RegistrationController extends Controller
             $entityManager->flush();
 
 
-            return $this->redirectToRoute('home');
+            return new JsonResponse(['message' => 'success']);
         }
 
         return $this->render(

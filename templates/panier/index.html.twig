@@ -24,8 +24,8 @@
                     <td>{{ product.quantity}}</td>
                     <td>{{ product.product.price}} €</td>
                     <td>
-                        <form action="{{ path('cart_delete', {'product_id': product.product.id, 'cart_id': cart_data.id}) }}">
-                            <button type="submit" style="background: transparent; border: 0;"><img src="../img/waste-bin.png" alt=""></button>
+                        <form class="ajax_delete--product" action="{{ path('cart_delete', {'product_id': product.product.id, 'cart_id': cart_data.id}) }}">
+                            <button  type="submit" style="background: transparent; border: 0;"><img src="../img/waste-bin.png" alt=""></button>
                         </form>
                     </td>
                     </tr>

@@ -112,31 +112,32 @@ class PanierController extends Controller
     /**
      * @Route("/panier/delete/{product_id}/{cart_id}", name="cart_delete")
      */
-    public function deleteAction($product_id, $cart_id)
+    public function deleteAction(Request $request, $product_id, $cart_id)
     {
-        $em = $this->getDoctrine()->getManager();
-        $repo = $this->getDoctrine()->getRepository(Shipping::class);
+        if($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+            $repo = $this->getDoctrine()->getRepository(Shipping::class);
 
-        $ship = $repo->findOneBy(['product' => $product_id, 'cart' => $cart_id]);
+            $ship = $repo->findOneBy(['product' => $product_id, 'cart' => $cart_id]);
 
-        $new_price = $ship->getCart()->getTotalPrice() - ($ship->getProduct()->getPrice() * $ship->getQuantity());
+            $new_price = $ship->getCart()->getTotalPrice() - ($ship->getProduct()->getPrice() * $ship->getQuantity());
 
 
-        $ship->getCart()->setTotalPrice($new_price);
+            $ship->getCart()->setTotalPrice($new_price);
 
-        $em->remove($ship);
+            $em->remove($ship);
 
-        $em->flush();
-
-        if ($ship->getCart()->getTotalPrice() == 0)
-        {
-            $cart = $this->getDoctrine()->getRepository(Cart::class)->find($cart_id);
-
-            $em->remove($cart);
             $em->flush();
-        }
 
-        $this->addFlash('success', 'Product has been removed');
+            if ($ship->getCart()->getTotalPrice() == 0) {
+                $cart = $this->getDoctrine()->getRepository(Cart::class)->find($cart_id);
+
+                $em->remove($cart);
+                $em->flush();
+            }
+
+            $this->addFlash('success', 'Product has been removed');
+        }
 
         return $this->redirectToRoute('panier');
     }

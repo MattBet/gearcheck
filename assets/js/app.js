@@ -90,3 +90,19 @@ $('.ajax_atc--clear').submit(function(e){
         console.log(msg);
     })
 });
+
+$('.ajax_delete--product').submit(function(e){
+    console.log('clicked');
+    e.preventDefault();
+
+    $.ajax({
+        type: $(this).attr('method'),
+        url: $(this).attr('action'),
+        data: $(this).serializeArray(),
+        success: function () {
+            $('#cart').load(' #cart');
+        }
+    }).done(function (msg) {
+        console.log(msg)
+    })
+});

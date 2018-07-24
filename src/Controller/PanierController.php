@@ -99,8 +99,6 @@ class PanierController extends Controller
                     $em->flush();
                 }
 
-                $this->addFlash('success', 'This item has been added to your cart');
-
                 return new JsonResponse(['message' => 'success',
                     'entity' => $product]);
             }
@@ -135,8 +133,6 @@ class PanierController extends Controller
                 $em->remove($cart);
                 $em->flush();
             }
-
-            $this->addFlash('success', 'Product has been removed');
         }
 
         return $this->redirectToRoute('panier');
@@ -164,8 +160,6 @@ class PanierController extends Controller
 
             $em->remove($cart);
             $em->flush();
-
-            $this->addFlash('success', 'Your cart has been cleared');
 
             return new JsonResponse(['message' => 'success', 'cart' => $cart]);
         }

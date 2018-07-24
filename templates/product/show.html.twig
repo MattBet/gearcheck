@@ -31,6 +31,7 @@
                     {{ product.price }} €
                 </div>
                 <div class="product-atc">
+                    {% if app.user|default %}
                     {{ dump(user_products) }}
                     <form action='{{ path('add_to_cart', {'id': product.getId()}) }}' class="ajax_atc">
                         {% set _intoCart = false %}
@@ -48,6 +49,9 @@
                         {% endif %}
 
                     </form>
+                    {% else %}
+                        <div><button data-toggle="modal" data-target="#loginModal" class="button btn--filled btn--large">ADD TO CART</button></div>
+                    {% endif %}
                 </div>
             </div>
         </div>

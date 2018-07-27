@@ -66,9 +66,7 @@
                                 <div class="review">
                                     <div class="card mb-3 border-0">
                                         <div class="card-body">
-                                            <h5 class="card-title"><span><img class="mr-3" src="../img/profile.png" alt=""></span>{{ review.user.username }}
-                                                <!-- AJAX ON LIKE/DISLIKE REVIEW -->
-                                                <a href="{{ path('vote_review', {'review_id': review.id, 'product_id': product.id}) }}" class="float-right"><small class="text-muted">TEST</small></a></h5>
+                                            <h5 class="card-title"><span><img class="mr-3" src="../img/profile.png" alt=""></span>{{ review.user.username }}</h5>
                                             <p class="card-text mt-5 ml-5">{{ review.comment }}</p>
                                             <p class="card-text mt-5 float-right"><small class="text-muted">Le {{ review.createdat | date("d F Y") }} à {{ review.createdat | date("G:i") }}</small></p>
                                         </div>
@@ -83,11 +81,7 @@
         <div class="product_review_edit">
             <div class="row">
                 <div class="col-lg-12">
-                    {{ form_start(formReview) }}
-                    {{ form_row(formReview.comment, {'required': false,'attr': {'placeholder': "Enter a comment..."}}) }}
-
-                    <button type="submit" class=" mt-5 button btn--filled btn--large">Save</button>
-                    {{ form_end(formReview) }}
+                    {{ render(controller('App\\Controller\\ReviewController::newAction', {'product_id': product.id})) }}
                 </div>
             </div>
         </div>

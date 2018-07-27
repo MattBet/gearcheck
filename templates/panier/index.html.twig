@@ -3,7 +3,6 @@
 {% block body %}
     {% if user_products|default %}
         <div id="cart">
-            <div class="empty_cart"></div>
             <table id="cart_table" style="background: rgba(0,0,0,0.2);">
                 <thead>
                     <tr>
@@ -49,21 +48,21 @@
                     <td>
                         <form action="">
                             <button type="submit" class="button btn--large" style="animation: shake 2s infinite;">CHECKOUT</button>
+
                         </form>
                     </td>
                 </tr>
-
-                <!-- CLEAR CART BUTTON -->
+                <!-- CLEAR CART BUTTON
                 <tr>
                     <td colspan="5"></td>
                     <td>
-                        <form class="ajax_atc--clear" action="{{ path('cart_clear', {'cart_id': cart_data.id}) }}">
+                        <form class="ajax_atc--clear" action="{#{{ path('cart_clear', {'cart_id': cart_data.id}) }}#}">
                             <button type="submit" class="button btn--large btn--filled">
                                 Clear cart
                             </button>
                         </form>
                     </td>
-                </tr>
+                </tr>-->
                 </tbody>
             </table>
         </div>

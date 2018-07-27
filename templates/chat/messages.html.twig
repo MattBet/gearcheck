@@ -1,0 +1,13 @@
+<div class="chat_messages">
+{% for message in messages %}
+    <div data-id={{ message.id }}class="message" style="background: yellow; color: black; border: 1px solid black; border-radius: 3px;">
+ <div class=\"message_owner\">
+     {{ message.user.username }}
+    </div>
+           <div class=\"message_content\">
+               {{ message.message }}
+    </div>
+    </div>
+
+{% endfor %}
+</div>

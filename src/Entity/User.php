@@ -123,10 +123,22 @@ class User implements UserInterface
      */
     private $cart;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Notification", mappedBy="user")
+     */
+    private $notifications;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Chat", mappedBy="user")
+     */
+    private $chats;
+
 
     public function __construct() {
         $this->roles = array('ROLE_USER');
         $this->reviews = new ArrayCollection();
+        $this->notifications = new ArrayCollection();
+        $this->chats = new ArrayCollection();
     }
 
     public function getId()
@@ -248,6 +260,68 @@ class User implements UserInterface
         $newUser = $cart === null ? null : $this;
         if ($newUser !== $cart->getUser()) {
             $cart->setUser($newUser);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Notification[]
+     */
+    public function getNotifications(): Collection
+    {
+        return $this->notifications;
+    }
+
+    public function addNotification(Notification $notification): self
+    {
+        if (!$this->notifications->contains($notification)) {
+            $this->notifications[] = $notification;
+            $notification->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNotification(Notification $notification): self
+    {
+        if ($this->notifications->contains($notification)) {
+            $this->notifications->removeElement($notification);
+            // set the owning side to null (unless already changed)
+            if ($notification->getUser() === $this) {
+                $notification->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Chat[]
+     */
+    public function getChats(): Collection
+    {
+        return $this->chats;
+    }
+
+    public function addChat(Chat $chat): self
+    {
+        if (!$this->chats->contains($chat)) {
+            $this->chats[] = $chat;
+            $chat->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChat(Chat $chat): self
+    {
+        if ($this->chats->contains($chat)) {
+            $this->chats->removeElement($chat);
+            // set the owning side to null (unless already changed)
+            if ($chat->getUser() === $this) {
+                $chat->setUser(null);
+            }
         }
 
         return $this;

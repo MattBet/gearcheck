@@ -22,9 +22,12 @@ class PanierController extends Controller
         //get current User
         $token = $this->get('security.token_storage')->getToken();
         $user = $token->getUser();
+        //Get user state
+        $auth_checker = $this->get('security.authorization_checker');
+        $user_logged = $auth_checker->isGranted("IS_AUTHENTICATED_FULLY");
 
         //Check if an user is logged in
-        if(!$user)
+        if(!$user_logged)
         {
             return $this->redirectToRoute('home');
         }
@@ -138,9 +141,9 @@ class PanierController extends Controller
         return $this->redirectToRoute('panier');
     }
 
-    /**
+     /*
      * @Route("/panier/clear/{cart_id}", name="cart_clear")
-     */
+
     public function clearAction(Request $request, $cart_id){
 
         if($request->isXmlHttpRequest()) {
@@ -165,5 +168,5 @@ class PanierController extends Controller
         }
 
         return $this->redirectToRoute('panier');
-    }
+    }*/
 }

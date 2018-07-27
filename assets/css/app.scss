@@ -7,6 +7,25 @@ body{
   color: #fff;
 }
 
+.notification{
+  position:fixed;
+  z-index:999;
+  cursor: pointer;
+  border-left: 6px solid #f19514;
+  font-size: 12px;
+  line-height: 15px;
+  padding: 20px 5px 20px 11px;
+  letter-spacing: 1px;
+  border-radius: 0px 5px 5px 0px;
+  color: #fff;
+  background-color: #1b1e21;
+  width: 200px;
+  height: auto;
+  left: -220px;
+  -webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+  box-shadow:         7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+}
 #backtotop {
   background-image: url("../img/uparrow.png");
   background-size: cover;
@@ -211,6 +230,22 @@ input:focus{
   background-color: #41ccff;
 }
 
+.btn--gmail{
+  display: inline-block;
+  height: 45px;
+  width: 100%;
+  border-radius: 3px;
+  border: 2px solid rgba(214, 255, 250, 0.4);
+  background-color: #D54B3D;
+  color: white;
+  font-weight: 600;
+  transition: background-color .2s ease;
+}
+
+.btn--gmail:hover{
+  background-color: #E75A50;
+}
+
 .contact-btn--group > button{
   margin-top: 2%;
 
@@ -245,7 +280,6 @@ input:focus{
   background-repeat: no-repeat;
 
 }
-
 #big-square::after{
 
   content: "";
@@ -339,6 +373,7 @@ input:focus{
   /* Create the parallax scrolling effect */
   background: linear-gradient(rgba(34, 37, 47, 0.2), rgba(34, 37, 47, 0.95)), url("../img/pirate.png") fixed;
   background-size: cover;
+  background-position: right;
 
   position: relative;
   width: 100%;
@@ -419,17 +454,30 @@ input:focus{
 // TOP SELLING
 .home-product-group{
   margin-bottom: 15px;
-  .product-vignette-img{
+  .product-vignette{
     margin-bottom: 10px;
     height: 200px;
     width: 100%;
-    background-size: cover;
-    background-position: 50% 50%;
+
     border-radius: 3px;
     -webkit-box-shadow: 0 6px 10px 0 rgba(0,0,0,.25);
     box-shadow: 0 6px 10px 0 rgba(0,0,0,.25);
     border: 1px solid hsla(0,0%,100%,.1);
     transition: all .2s ease-in;
+    overflow: hidden;
+
+    .product-vignette-img
+    {
+      height: 100%;
+      width: 100%;
+      background-size: cover;
+      background-position: 50% 50%;
+      -webkit-transition: all .5s;
+      -moz-transition: all .5s;
+      -ms-transition: all .5s;
+      -o-transition: all .5s;
+      transition: all .5s;
+    }
   }
 
   .product-vignette--title{
@@ -445,6 +493,19 @@ input:focus{
   }
 }
 
+.product-vignette:hover .product-vignette-img{
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  -ms-transition: all .5s;
+  -o-transition: all .5s;
+  transition: all .5s;
+}
 .home-product-group:hover{
   .product-vignette-img{
     -webkit-box-shadow: 0px 6px 27px 0px rgba(250,188,0,0.08);

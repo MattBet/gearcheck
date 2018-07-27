@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if app.user %}
+        <div id="profile" class="card text-center">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs" id="profileTabs">
+                    <li class="nav-item">
+                        <a class="nav-link active"  id="profile-tab" data-toggle="tab" href="#profile--info" role="tab" aria-controls="profile--info" aria-selected="true">Account info</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"  id="setting-tab" data-toggle="tab" href="#profile--setting" role="tab" aria-controls="profile--setting" aria-selected="true">Settings</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="profile--info" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="row">
+                        <div class="col-lg-6"></div>
+                        <div class="col-lg-6">
+                            <div class="container"></div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 5em 5em;">
+                        <div class="col-lg-6">
+                            {{ dump(user) }}
+                            {{ include('user/_form.html.twig') }}
+                        </div>
+                        <div class="col-lg-6">
+                            {% if user.image %}
+                                {{ dump(user.image) }}
+                                <label for="">PROFILE IMAGE</label>
+                                <img src="../uploads/{{ user.image }}" class="img-fluid" alt="">
+                            {% else %}
+                                <img src="../img/default-avatar.jpg" alt="">
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="profile--setting" role="tabpanel" aria-labelledby="profile-tab">
+
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

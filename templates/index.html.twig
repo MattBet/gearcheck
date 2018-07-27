@@ -7,9 +7,9 @@
             <div class="hero">
                 <div class="row">
                     <div class="col-lg-6">
-                        <div class="hero-subheader">Flumen terra bonis Isauria verticibus.
+                        <div class="hero-subheader">endless hours of farming?
                         </div>
-                        <div class="hero-header">Et illa quis Mithridaticos quis et exhausti urbis inquam Byzantiorum.
+                        <div class="hero-header">From now, get your favorite mounts, gear or achievements
                         </div>
                         <div class="hero-buttons">
                             {% if app.user %}
@@ -29,12 +29,12 @@
 
         <section id="service">
                 <div class="feature-subheader text-center">
-                    Flumen terra bonis Isauria verticibus.
+                    categories
                 </div>
                 <div class="feature-header text-center">
-                    Et illa quis Mithridaticos quis et exhausti urbis inquam Byzantiorum.
+                    Choose your way of getting ahead
                 </div>
-                <div class="feature-content text-center">Et inde Syria advecticiis et interpatet inde advecticiis cognita et.
+                <div class="feature-content text-center">Prepare yourself for BFA.
                 </div>
             <div class="row mt-4">
                 <div class="col-lg-6">
@@ -46,15 +46,15 @@
 
                 <div class="col-lg-6" id="little-square2">
                     <div class="foo foo-featured" style='background: linear-gradient(rgba(34, 37, 47, 0.2), rgba(34, 37, 47, 0.95)), url("../img/artifact.jpg") 50% 40%; background-size: cover;'>
-                        <p class="">Artifact skin</p>
+                        <p class="">Gear</p>
                         <a class="button btn--filled" href="">SHOW MORE</a>
                     </div>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="col-lg-12" id="big-square">
-                    <div class="foo foo-featured" style='background: linear-gradient(rgba(34, 37, 47, 0.2), rgba(34, 37, 47, 0.95)), url("../img/nighthold.jpeg") 75% 35%; background-size: cover;'>
-                        <p class="">RAID BOOSTING</p>
+                    <div class="foo foo-featured" style='background: linear-gradient(rgba(34, 37, 47, 0.2), rgba(34, 37, 47, 0.95)), url("../img/nighthold.jpeg") fixed 75% 35% ; background-size: 100% 100%;'>
+                        <p class="">Raid</p>
                         <a class="button btn--filled" href="">SHOW MORE</a>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
 
         <section id="topselling">
             <div class="feature-subheader text-center">
-                Our best sellers
+                Popular sellers
             </div>
             <div class="feature-header text-center">
                 Top selling now
@@ -76,8 +76,9 @@
                             <div class="col-lg-4">
                                 <a class="product_link" href="product/{{ product.id }}">
                                     <div class="home-product-group">
-                                        <div
-                                                style="background-image: url('../uploads/{{ product.image }}');" class="product-vignette-img">
+                                        <div class="product-vignette">
+                                                <div class="product-vignette-img" style="background-image: url('../uploads/{{ product.image }}');" class="product-vignette-img">
+                                                </div>
                                         </div>
                                         <div class="product-vignette--title">{{ product.name }}</div>
                                         <div class="product-vignette--price">{{ product.price }} €</div>
@@ -131,26 +132,23 @@
                 </div>
             </div>
         </section>
-    <!-- CONTAINER END -->
-    </div>
-    <div class="container-fluid">
         <section id="faq">
             <div id="parallax-faq">
                 <div class="pt-4">
                     <div class="feature-subheader text-center">
-                        Flumen terra bonis Isauria verticibus.
+                        Frequently asked questions
                     </div>
                     <div class="feature-header text-center">
-                        Et illa quis Mithridaticos quis et exhausti urbis inquam Byzantiorum.
+                        Still dubious?
                     </div>
-                    <div class="feature-content text-center">Et inde Syria advecticiis et interpatet inde advecticiis cognita et.
+                    <div class="feature-content text-center">We will take our time to answer all your questions.
                     </div>
-                    <button class="button btn--filled btn--large mt-5"><a href="#">Frequently Asked Questions</a></button>
+                    <button class="button btn--filled btn--large mt-5"><a href="#">SEE THE FAQ</a></button>
                 </div>
             </div>
         </section>
-    </div>
-
-
-
+    {#<section id="chat">
+        {{ render(controller('App\\Controller\\ChatController::getAllMessages')) }}
+        {{ render(controller('App\\Controller\\ChatController::index')) }}
+    </section>#}
 {% endblock %}

@@ -25,7 +25,7 @@ class ProductController extends Controller
      */
     public function index(ProductRepository $productRepository): Response
     {
-        return $this->render('product/index.html.twig', [
+        return $this->render('product/new.html.twig', [
             'products' => $productRepository->findAll()
         ]);
     }
@@ -80,24 +80,7 @@ class ProductController extends Controller
             $user_products = $this->getDoctrine()->getRepository(Shipping::class)->findBy(['cart' => $user_cart[0]->getId()]);
         }
 
-
-        $review = new Review();
-        $formReview = $this->createForm(ReviewType::class, $review);
-        $formReview->handleRequest($request);
-        if ($formReview->isSubmitted() && $formReview->isValid())
-        {
-            $review->setCreatedAt(new \DateTime());
-            $review->setUser($this->getUser());
-            $review->setProductId($product);
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($review);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('product_show', array('id' => $product->getId())), 301);
-        }
         return $this->render('product/show.html.twig', ['product' => $product,
-                                                                'formReview' => $formReview->createView(),
                                                                 'user_products' => $user_products]);
     }
 
@@ -133,15 +116,5 @@ class ProductController extends Controller
         }
 
         return $this->redirectToRoute('product_index');
-    }
-
-    /**
-     * @Route("/{product_id}/vote/{review_id}", name="vote_review", methods={"POST"})
-     */
-    public function voteAction($product_id, $review_id)
-    {
-        $review = $this->getDoctrine()->getRepository(Review::class)->findOneBy(['product' => $product_id, 'id' => $review_id]);
-
-        return $this->json(['vote' => $review->getVote()]);
     }
 }

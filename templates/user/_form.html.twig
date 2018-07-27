@@ -1,0 +1,8 @@
+{{ form_start(form, {'attr': {'id': 'ajax_profile'}}) }}
+{{ form_row(form.username) }}
+{{ form_row(form.email) }}
+{{ form_row(form.discord, {'required': false, 'attr': {'placeholder': 'john#0000'}}) }}
+{{ form_row(form.skype, {'required': false, 'attr': {'placeholder': 'skype login'}}) }}
+{{ form_row(form.image, {'label_attr': {'class': '_upload button button--filled'}, 'label': 'Choose a profile image'}) }}
+<button class="button btn--filled btn--large">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

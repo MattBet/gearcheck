@@ -73,11 +73,11 @@
                 {% for productRow in products|batch(3) %}
                     <div class="row">
                         {% for product in productRow %}
-                            <div class="col-lg-4">
+                            <div class="col-lg-4 col-sm-12 text-center">
                                 <a class="product_link" href="product/{{ product.id }}">
                                     <div class="home-product-group">
                                         <div class="product-vignette">
-                                                <div class="product-vignette-img" style="background-image: url('../uploads/{{ product.image }}');" class="product-vignette-img">
+                                                <div style="background-image: url('../uploads/{{ product.image }}');" class="product-vignette-img">
                                                 </div>
                                         </div>
                                         <div class="product-vignette--title">{{ product.name }}</div>

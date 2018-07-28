@@ -133,6 +133,16 @@ class User implements UserInterface
      */
     private $chats;
 
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $activation_code;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $is_active;
+
 
     public function __construct() {
         $this->roles = array('ROLE_USER');
@@ -323,6 +333,30 @@ class User implements UserInterface
                 $chat->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getActivationCode(): ?string
+    {
+        return $this->activation_code;
+    }
+
+    public function setActivationCode(string $activation_code): self
+    {
+        $this->activation_code = $activation_code;
+
+        return $this;
+    }
+
+    public function getIsActive(): ?bool
+    {
+        return $this->is_active;
+    }
+
+    public function setIsActive(?bool $is_active): self
+    {
+        $this->is_active = $is_active;
 
         return $this;
     }

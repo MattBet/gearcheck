@@ -1,10 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="login--wrapper">
+
 {% if error %}
     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
-<form action="{{ path('login') }}" method="post" class="ajax_login">
-    <input type="text" id="username" name="_username" placeholder="Username" value="{{ last_username }}" />
+        <div class="register_title feature-subheader">Login</div>
 
-    <input type="password" id="password" name="_password" placeholder="Password" />
+<form action="{{ path('login') }}" method="post">
+    <div>
+    <label for="username">Username</label>
+    <input type="text" id="username" name="_username" value="{{ last_username }}" />
+    </div>
+
+    <div>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="_password" />
+    </div>
 
         <button class="mt-3 button btn--filled btn--large" type="submit">login</button>
 </form>
+        <a href="" style="float: left; font-size: 13px; margin: 5px 0;">Forgot password?</a>
+        <hr style="clear: both;:left;" class="footer_hr">
+        <div class="text-muted" style="float: left;">Need an account? <a id="to_register" href="{{ path('register') }}">Register</a></div>
+    </div>
+
+{% endblock %}

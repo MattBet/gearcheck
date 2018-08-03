@@ -26,6 +26,16 @@ class Notification
      */
     private $label;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $link;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $seen;
+
     public function getId()
     {
         return $this->id;
@@ -51,6 +61,30 @@ class Notification
     public function setLabel(string $label): self
     {
         $this->label = $label;
+
+        return $this;
+    }
+
+    public function getLink(): ?string
+    {
+        return $this->link;
+    }
+
+    public function setLink(?string $link): self
+    {
+        $this->link = $link;
+
+        return $this;
+    }
+
+    public function getSeen(): ?bool
+    {
+        return $this->seen;
+    }
+
+    public function setSeen(bool $seen): self
+    {
+        $this->seen = $seen;
 
         return $this;
     }

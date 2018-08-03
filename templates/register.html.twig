@@ -1,3 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="register--wrapper">
+        <div class="register_title feature-subheader">Create an account</div>
 {{ form_start(formRegister, {'attr': {'class': 'ajax_signup'}}) }}
     {{ form_row(formRegister.username) }}
     {{ form_row(formRegister.email) }}
@@ -6,3 +11,8 @@
 
 <button class="button btn--filled btn--large mt-3" type="submit">Register!</button>
 {{ form_end(formRegister) }}
+
+        <hr class="footer_hr">
+        <div class="text-muted" style="float: left;">You already have an account? <a class="to_login" href="{{ path('login') }}">Login</a></div>
+    </div>
+{% endblock %}

@@ -59,7 +59,6 @@ class PanierController extends Controller
         $auth_checker = $this->get('security.authorization_checker');
         $user_logged = $auth_checker->isGranted("IS_AUTHENTICATED_FULLY");
 
-        if($request->isXmlHttpRequest()) {
             if ($user_logged) {
                 //Get entity manager
                 $em = $this->getDoctrine()->getManager();
@@ -105,8 +104,6 @@ class PanierController extends Controller
                 return new JsonResponse(['message' => 'success',
                     'entity' => $product]);
             }
-        }
-
         return $this->redirectToRoute('home');
     }
 

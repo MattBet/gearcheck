@@ -13,9 +13,9 @@
                         </div>
                         <div class="hero-buttons">
                             {% if app.user %}
-                                <a class="button btn--filled" href="#topselling">OUR BEST SELLERS</a>
+                                <a class="button button-violet" href="#topselling">OUR BEST SELLERS</a>
                             {% else %}
-                                <a class="button btn--filled" data-toggle="modal" data-target="#signupModal">CREATE AN ACCOUNT</a>
+                                <a class="button button-violet" data-toggle="modal" data-target="#signupModal">CREATE AN ACCOUNT</a>
                             {% endif %}
 
                             <a href="#testimonial" class="button">REVIEWS</a>
@@ -37,60 +37,108 @@
                 <div class="feature-content text-center">Prepare yourself for BFA.
                 </div>
             <div class="row mt-4">
-                <div class="col-lg-6">
-                    <div class="foo foo-featured" style='background: linear-gradient(rgba(34, 37, 47, 0.2), rgba(34, 37, 47, 0.95)), url("../img/powerleveling.jpg") 75% 35%; background-size: cover;'>
-                        <p class="">Powerleveling</p>
-                        <a class="button btn--filled" href="">SHOW MORE</a>
+                <div class="col-lg-6" id="little-square">
+                    <div class="foo foo-featured flex-centered" style='background: linear-gradient(rgba(34, 37, 47, 0.2), rgba(34, 37, 47, 0.95)), url("../img/powerleveling.jpg") 75% 35%; background-size: cover;'>
+                        <h3 class="">Powerleveling</h3>
+                        <a class="button button-fancy" href="/category/5">SHOW MORE<span><img src="../img/next.png" class="ml-2" alt=""></span></a>
                     </div>
                 </div>
 
                 <div class="col-lg-6" id="little-square2">
-                    <div class="foo foo-featured" style='background: linear-gradient(rgba(34, 37, 47, 0.2), rgba(34, 37, 47, 0.95)), url("../img/artifact.jpg") 50% 40%; background-size: cover;'>
-                        <p class="">Gear</p>
-                        <a class="button btn--filled" href="">SHOW MORE</a>
+                    <div class="foo foo-featured flex-centered" style='background: linear-gradient(rgba(34, 37, 47, 0.2), rgba(34, 37, 47, 0.95)), url("../img/wow-token.jpg") 50% 40%; background-size: cover;'>
+                        <h3 class="">Gold</h3>
+                        <a class="button button-fancy" href="/category/1">SHOW MORE<span><img src="../img/next.png" class="ml-2" alt=""></span></a>
                     </div>
                 </div>
             </div>
-            <div class="row mt-4">
-                <div class="col-lg-12" id="big-square">
-                    <div class="foo foo-featured" style='background: linear-gradient(rgba(34, 37, 47, 0.2), rgba(34, 37, 47, 0.95)), url("../img/nighthold.jpeg") fixed 75% 35% ; background-size: 100% 100%;'>
-                        <p class="">Raid</p>
-                        <a class="button btn--filled" href="">SHOW MORE</a>
+            <div class="row mt-4 hide">
+                <div class="col-lg-12" id="big-square" data-background="nightbornefemale.png">
+                    <div class="foo foo-featured" style='background: linear-gradient(rgba(34, 37, 47, 0.2), rgba(34, 37, 47, 0.95)), url("../img/cos.jpg") 75% 35% ; background-size: cover;'>
+                        <h3>Mythic+</h3>
+                        <a class="button button-fancy button-violet" href="/category/4">SHOW MORE<span><img src="../img/next.png" class="ml-2" alt=""></span></a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="whychooseus"></section>
-
-        <section id="topselling">
+        <section id="topselling" class="hide">
             <div class="feature-subheader text-center">
                 Popular sellers
             </div>
-            <div class="feature-header text-center">
+            <div class="feature-header text-center hide">
                 Top selling now
             </div>
-                {% for productRow in products|batch(3) %}
-                    <div class="row">
-                        {% for product in productRow %}
-                            <div class="col-lg-4 col-sm-12 text-center">
-                                <a class="product_link" href="product/{{ product.id }}">
-                                    <div class="home-product-group">
-                                        <div class="product-vignette">
-                                                <div style="background-image: url('../uploads/{{ product.image }}');" class="product-vignette-img">
-                                                </div>
-                                        </div>
-                                        <div class="product-vignette--title">{{ product.name }}</div>
-                                        <div class="product-vignette--price">{{ product.price }} €</div>
-                                    </div>
-                                </a>
-                            </div>
-                        {% endfor %}
+            <div class="products">
+                {% for product in products %}
+                    <div class="product-card--index" style="background: linear-gradient(rgba(34, 37, 47, 0.2), rgba(34, 37, 47, 0.95)), url('../uploads/{{ product.image }}') no-repeat; background-size: cover;">
+                        <div class="product-info">
+                            <h5 class="product-name"><a href="/product/{{ product.id }}">{{ product.name }}</a></h5>
+                            <form action='{{ path('add_to_cart', {'id': product.id }) }}' id="atc_{{ product.id }}">
+                            <div><button type="submit" class="button"><span><img src="../img/shopping-cart.png" style="width: 24px; height: 24px;" class="mr-2" alt=""></span>ADD TO CART</button></div>
+                            </form>
+                                <div><a href="/product/{{ product.id }}" class="button button-red">BUY</a></div>
+                        </div>
                     </div>
+                {% else %}
+                    <div>No products found</div>
                 {% endfor %}
+            </div>
         </section>
 
-        <section id="testimonial">
+    <section id="howdoesitwork" class="text-center">
+        <div class="feature-subheader hide">
+            How does it work?
+        </div>
+        <div class="feature-header text-center hide">
+            Learn the process
+        </div>
+        <div class="row hide">
+            <div class="col-lg-4">
+                <div class="how-wrapper">
+                    <!-- ICON -->
+                    <div class="img-wrapper">
+                        <div class="img-icon" style="background-image: url('../img/shopping-bag.png')"></div>
+                    </div>
+                    <!-- TITLE -->
+                    <h5 class="">Lorem ipsum</h5>
+                    <!-- DESCRIPTION -->
+                    <div class="text-muted">
+                        Et vidimus plerosque et possint mos possint vini universis usum vidimus plerosque plerosque multiplices universis.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="how-wrapper">
+                    <!-- ICON -->
+                    <div class="img-wrapper">
+                        <div class="img-icon" style="background-image: url('../img/credit-cards-payment.png')"></div>
+                    </div>
+                    <!-- TITLE -->
+                    <h5 class="">Lorem ipsum</h5>
+                    <!-- DESCRIPTION -->
+                    <div class="text-muted">
+                        Et vidimus plerosque et possint mos possint vini universis usum vidimus plerosque plerosque multiplices universis.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="how-wrapper">
+                    <!-- ICON -->
+                    <div class="img-wrapper">
+                        <div class="img-icon" style="background-image: url('../img/success.png')"></div>
+                    </div>
+                    <!-- TITLE -->
+                    <h5 class="">Lorem ipsum</h5>
+                    <!-- DESCRIPTION -->
+                    <div class="text-muted">
+                        Et vidimus plerosque et possint mos possint vini universis usum vidimus plerosque plerosque multiplices universis.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% if reviews|default %}
+        <section id="testimonial" class="hide">
             <div class="feature-subheader text-center">
                 Testimonial
             </div>
@@ -103,13 +151,13 @@
                         <div class="carousel-item active">
                             <div class="index_review">
                                 <div class="review_user">
-                                    {{ reviews[1].user.username }}
+                                    {{ reviews[0].user.username }}
                                 </div>
                                 <div class="review_text">
-                                    "{{ reviews[1].comment }}"
+                                    "{{ reviews[0].comment }}"
                                 </div>
                                 <div class="review_date">
-                                    {{ reviews[1].createdat|date("M d") }}
+                                    {{ reviews[0].createdat|date("M d") }}
                                 </div>
                             </div>
                         </div>
@@ -132,7 +180,8 @@
                 </div>
             </div>
         </section>
-        <section id="faq">
+    {% endif %}
+        <section id="faq" class="hide">
             <div id="parallax-faq">
                 <div class="pt-4">
                     <div class="feature-subheader text-center">
@@ -143,7 +192,7 @@
                     </div>
                     <div class="feature-content text-center">We will take our time to answer all your questions.
                     </div>
-                    <button class="button btn--filled btn--large mt-5"><a href="#">SEE THE FAQ</a></button>
+                    <a class="button button-violet btn--large mt-5" href="{{ path('faq') }}">SEE THE FAQ</a>
                 </div>
             </div>
         </section>

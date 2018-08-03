@@ -5,33 +5,26 @@
 {% block body %}
     <h1>Product index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for product in products %}
-            <tr>
-                <td>{{ product.id }}</td>
-                <td>{{ product.name }}</td>
-                <td>{{ product.price }}</td>
-                <td>
-                    <a href="{{ path('product_show', {'id': product.id}) }}">show</a>
-                    <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    {% for productRow in products|batch(3) %}
+        <div class="row">
+            {% for product in productRow %}
+                <div class="col-lg-4 col-sm-12 text-center">
+                    <a class="product_link" href="{{ path('product_show', {'id': product.id}) }}">
+                        <div class="home-product-group">
+                            <div class="product-vignette">
+                                <div style="background-image: url('../uploads/{{ product.image }}');" class="product-vignette-img">
+                                </div>
+                            </div>
+                            <div class="product-vignette--title">{{ product.name }}</div>
+                            <div class="product-vignette--price">{{ product.price }} €</div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
 
+    {% if app.user|default and app.user.roles[0] == 'ROLE_ADMIN' %}
     <a href="{{ path('product_new') }}">Create new</a>
+    {% endif %}
 {% endblock %}

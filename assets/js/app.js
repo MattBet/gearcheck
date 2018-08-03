@@ -50,6 +50,30 @@ $(function() {
     });
 });
 
+$(document).ready(function() {
+
+    /* Every time the window is scrolled ... */
+    $(window).scroll( function(){
+
+        /* Check the location of each desired element */
+        $('.hide').each( function(i){
+
+            var bottom_of_object = $(this).offset().top + $(this).outerHeight();
+            var bottom_of_window = $(window).scrollTop() + $(window).height();
+
+            /* If the object is completely visible in the window, fade it */
+            if( bottom_of_window > bottom_of_object ){
+
+                $(this).animate({'opacity':'1'},500);
+
+            }
+
+        });
+
+    });
+
+});
+
 //HOME
 $('.navbar-brand').click(function (e) {
     e.preventDefault();
@@ -97,7 +121,8 @@ $('.ajax_atc').submit(function(e){
         button.blur();
 
     },
-    success: function(){
+    success: function(data){
+        console.log(data)
         button.html('HAS BEEN ADDED TO YOUR CART');
         button.removeClass();
         button.addClass('button--disabled btn--large');
@@ -111,6 +136,31 @@ $('.ajax_atc').submit(function(e){
 
 
 });
+
+$('[id^="atc_"]').submit(function (e) {
+    e.preventDefault();
+    myButton = $(this).find('button')
+    console.log(myButton)
+    $.ajax({
+        type: $(this).attr('method'),
+        url: $(this).attr('action'),
+        data: $(this).serializeArray,
+    }).done(function (data) {
+        console.log(data);
+        if (data['message'] === 'success') {
+            myButton.empty()
+            myButton.append("<span><img src=\"../img/success_atc.png\" style=\"width: 24px; height: 24px;\" class=\"mr-2\" alt=\"\"></span>ADDED");
+            myButton.attr('disabled','true');
+            myButton.css({
+                'cursor':'not-allowed'
+            });
+            notification("Added to you shopping cart");
+        }
+        else{
+            window.location.replace("/login");
+        }
+    })
+})
 
 
 //DELETE FROM CART
@@ -179,19 +229,81 @@ $('.product_link').click(function (e) {
     return false;
 });
 
-/*//SIGNUP
+//LOGIN
+$('#login, .to_login').click(function (e) {
+    e.preventDefault();
+
+    console.log('going for login page');
+
+    url = $(this).attr('href');
+    $.ajax({
+        url: $(this).attr('href'),
+        type: "GET",
+    }).done( function (data) {
+        afficher(data);
+        window.history.pushState("","", url)
+    })
+});
+
+//TO LOGIN PAGE
+$('#register, #to_register').click(function (e) {
+    e.preventDefault();
+
+    console.log('going for register page');
+
+    url = $(this).attr('href');
+    $.ajax({
+        url: $(this).attr('href'),
+        type: "GET",
+    }).done( function (data) {
+        afficher(data);
+        window.history.pushState("","", url)
+    })
+});
+
+
+
+//SIGNUP
 $('.ajax_signup').submit(function (e) {
     e.preventDefault();
-    console.log($(this).serializeArray())
     $.ajax({
-        url: $(this).url,
-        type: $(this).method,
+        url: "/register",
+        type: "POST",
         data: $(this).serializeArray(),
     }).done(function (data) {
-        notification("Your are signed up.");
-        afficher(data);
+        if (data['message'] === 'success') {
+            notification('Your are signed up.');
+            $('.register--wrapper').empty();
+            $(".register--wrapper").append('<div class="text-muted">You successfully signed up to <a href="{{path(/"home/"}}">gearcheck.io</a>. Check your inbox for a confirmation mail from us.</div>');
+
+            setTimeout(function () {
+                $.ajax({
+                    url: "/",
+                    type: "GET",
+                }).done(function (data) {
+                    afficher(data);
+                    window.history.pushState("","", "/")
+                })
+            }, 3000)
+
+        }
+        else {
+            afficher(data);
+        }
+    });
+    return false;
+});
+
+
+function afficher(data){
+    $('.loader').remove();
+    $("#page_content").fadeOut(500,function(){
+        $("#page_content").empty();
+        $("#page_content").append(data);
+        $("#page_content").fadeIn(1000);
     })
-});*/
+    return false;
+}
 
 /*
 //CHAT
@@ -210,15 +322,7 @@ $('#ajax_chat').submit(function (e) {
         });
     return false;
 })*/
-function afficher(data){
-    $('.loader').remove();
-    $("#page_content").fadeOut(500,function(){
-        $("#page_content").empty();
-        $("#page_content").append(data);
-        $("#page_content").fadeIn(1000);
-    })
-    return false;
-}
+
 /*
 function charger(){
 

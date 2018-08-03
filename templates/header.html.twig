@@ -4,34 +4,31 @@
         <nav class="navbar navbar-expand-lg">
             <a class="navbar-brand" href="{{ path('home') }}">GEARCHECK</a>
             <div class="navbar-toggler" style="background: url('../img/menu.png'); height: 32px; width: 32px; cursor: pointer;" type="button" data-toggle="collapse" data-target="#navContent" aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
-
             </div>
-
             <div class="collapse navbar-collapse" id="navContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link button" href="#">HOW DOES IT WORKS</a>
-                        <a class="nav-link button" href="#" data-toggle="modal" data-target="#contactModal">CONTACT</a>
+                    <li class="nav-item">
+                        <a class="nav-link button" href="/#howdoesitwork">HOW DOES IT WORKS</a>
+                        <a class="nav-link button" data-toggle="modal" data-target="#contactModal">CONTACT</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active" id="user_features">
                         {% if not app.user %}
-                        <a class="nav-link button btn--filled" href="#" data-toggle="modal" data-target="#loginModal"><span class="pr-2"><img src="../img/man-user.png" alt=""></span>Login</a>
-                        <a class="nav-link button" href="#" data-toggle="modal" data-target="#signupModal"><span class="pr-2"><img src="../img/man-user.png" alt=""></span>Sign up</a>
+                        <a class="nav-link button button-violet" id="login" href="{{ path('login') }}"><span class="pr-2"><img src="../img/man-user.png" alt=""></span>Login</a>
+                        <a class="nav-link button" href="{{ path('register') }}" id="register"><span class="pr-2"><img src="../img/man-user.png" alt=""></span>Sign up</a>
                         {% else %}
-                        <a id="profile_link" class="nav-link" href="/user/{{ app.user.id }}/edit"><img src="../img/profile.png" alt=""></a>
-
-
+                        <a id="profile_link" class="nav-link button" href="/user/{{ app.user.id }}/edit"><span><img src="../img/profile.png" style="width: 24px; height: 24px;" alt=""></span></a>
                     </li>
                     <li class="nav-item">
-                        <a id="cart_link" class="nav-link" href="javascript:void(0)"><img src="../img/shopping-cart.png" alt=""></a>
+                        <a id="cart_link" class="nav-link button" href="javascript:void(0)"><span><img src="../img/shopping-cart.png" class="mr-2" style="width: 24px; height: 24px;" alt=""></span>CART</a>
                     </li>
                     <li class="nav-item">
                         <a id="logout" class="nav-link button" href="javascript:void(0)"><span><img src="../img/sign-out.png" class="mr-2" alt=""></span>sign out</a>
                     </li>
                     {% endif %}
                 </ul>
+
             </div>
         </nav>
     </header>
@@ -60,7 +57,7 @@
     </div>
 </div>
 
-<!-- LOGIN MODAL -->
+{#<!-- LOGIN MODAL -->
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content bg-dark">
@@ -99,4 +96,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>#}

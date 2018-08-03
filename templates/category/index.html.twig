@@ -3,33 +3,21 @@
 {% block title %}Category index{% endblock %}
 
 {% block body %}
-    <h1>Category index</h1>
+    {% for category in categories %}
+        <div class="row mb-3">
+                <div class="col-lg-12">
+                    <div id="category--{{ category.name }}" class="foo foo-featured" style="height: 250px; background: linear-gradient(rgba(34, 37, 47, 0.2), rgba(34, 37, 47, 0.95)), url('../uploads/{{ category.image }}'); background-size: cover; background-position: 50% 50%;">
+                    <h3>{{ category.name }}</h3>
+                    <a class="button button-fancy" href="/category/{{ category.id }}">PRODUCTS <span><img src="../img/next.png" alt=""></span></a>
+                    </div>
+                </div>
+        </div>
+    {% else %}
+        <div>No categories found</div>
+    {% endfor %}
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for category in categories %}
-            <tr>
-                <td>{{ category.id }}</td>
-                <td>{{ category.name }}</td>
-                <td>
-                    <a href="{{ path('category_show', {'id': category.id}) }}">show</a>
-                    <a href="{{ path('category_edit', {'id': category.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('category_new') }}">Create new</a>
+    {% if is_granted("ROLE_ADMIN") %}
+    <a class="button button-fancy" href="{{ path('category_new') }}">Create new</a>
+    {% endif %}
 {% endblock %}
